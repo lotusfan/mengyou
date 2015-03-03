@@ -19,15 +19,23 @@ public class TestAction {
     @Autowired
     public TestService testService;
 
-    @RequestMapping(value = "/test", method = RequestMethod.POST)
+    @RequestMapping(value = "/testmodel", method = RequestMethod.POST)
     @ResponseBody
-    public String testMethod(@RequestBody TestModel testModel1) {
-        System.out.println("test action success!!");
+    public String testModelMethod(@RequestBody TestModel testModel1) {
+        System.out.println("testModel action success!!");
         testService.testMethod();
         TestModel testModel = new TestModel();
         testModel.setTest1("dddd");
         testModel.setTest2("aaaa");
         System.out.println(testModel1);
         return JSON.toJSONString(testModel);
+    }
+
+    @RequestMapping(value = "/teststring", method = RequestMethod.GET)
+    @ResponseBody
+    public String testStringMethod() {
+        System.out.println("test action success!!");
+        testService.testMethod();
+        return "testString action success";
     }
 }

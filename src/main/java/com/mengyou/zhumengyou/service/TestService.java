@@ -1,5 +1,8 @@
 package com.mengyou.zhumengyou.service;
 
+import com.mengyou.zhumengyou.dao.TestMapper;
+import com.mengyou.zhumengyou.model.db.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -9,7 +12,13 @@ import org.springframework.stereotype.Service;
 public class TestService {
 
 
+    @Autowired
+    private TestMapper testMapper;
     public void testMethod() {
+        Test test = new Test();
+        test.setId(2);
+        System.out.println(testMapper.getBy(test));
+
         System.out.println("test Service Success!!");
     }
 }
