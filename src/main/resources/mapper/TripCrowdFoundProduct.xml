@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mengyou.zhumengyou.dao.TestMapper">
+
+	<resultMap type="com.mengyou.zhumengyou.model.db.Test" id="testResultMap">
+		<id column="id" property="id" />
+        <result column="name" property="name" />
+	</resultMap>
+
+	<!--<update id="update" parameterType="com.yellowcar.entities.Path">
+		update `path`
+		<trim prefix="set" suffixOverrides=",">
+            <if test="order != null"> `order` = #{order},</if>
+            <if test="price != null"> `price` = #{price},</if>
+			<if test="title != null"> `title` = #{title},</if>
+			<if test="periods != null"> `info` = #{periods},</if>
+            <if test="cityCode != null"> `city_code` = #{cityCode},</if>
+			<if test="destNum != null"> `dest_num` = #{destNum},</if>
+            <if test="playtime != null"> `playtime` = #{playtime},</if>
+            <if test="feature != null"> `feature` = #{feature},</if>
+            <if test="status != null"> `status` = #{status},</if>
+            <if test="createTime != null"> `create_time` = #{createTime},</if>
+			<if test="modifyTime != null"> `modify_time` = #{modifyTime},</if>
+		</trim>
+		where `id` = #{id}
+	</update>-->
+
+<!--	<insert id="save" parameterType="com.opservice.model.OpIdToPmsCode"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into `op_pms_mapper`(
+		<trim suffixOverrides=",">
+            <if test="opSupplierId != null"> `op_supplier_id`,</if>
+            <if test="opVehiclePackageId != null"> `op_vehicle_package_id`,</if>
+            <if test="opServiceId != null"> `op_service_id` ,</if>
+			<if test="opServicePackageId != null"> `op_service_package_id` ,</if>
+            <if test="opProductId != null"> `op_product_id` ,</if>
+			<if test="opProductType != null"> `op_product_type` ,</if>
+            <if test="pmsSupplierId != null"> `pms_supplier_id` ,</if>
+            <if test="pmsVehicleCode != null"> `pms_vehicle_code` ,</if>
+            <if test="pmsServiceId != null"> `pms_service_id` ,</if>
+            <if test="pmsServicePackageId != null"> `pms_service_package_id` ,</if>
+            <if test="pmsProductCode != null"> `pms_product_code` ,</if>
+			<if test="remark1 != null"> `remark1` ,</if>
+			<if test="remark2 != null"> `remark2` ,</if>
+		</trim>
+		)values(
+		<trim suffixOverrides=",">
+            <if test="opSupplierId != null"> #{opSupplierId} ,</if>
+            <if test="opVehiclePackageId != null"> #{opVehiclePackageId} ,</if>
+            <if test="opServiceId != null"> #{opServiceId} ,</if>
+			<if test="opServicePackageId != null"> #{opServicePackageId} ,</if>
+            <if test="opProductId != null"> #{opProductId} ,</if>
+			<if test="opProductType != null"> #{opProductType} ,</if>
+            <if test="pmsSupplierId != null"> #{pmsSupplierId} ,</if>
+            <if test="pmsVehicleCode != null"> #{pmsVehicleCode} ,</if>
+            <if test="pmsServiceId != null"> #{pmsServiceId} ,</if>
+            <if test="pmsServicePackageId != null"> #{pmsServicePackageId} ,</if>
+            <if test="pmsProductCode != null"> #{pmsProductCode} ,</if>
+			<if test="remark1 != null"> #{remark1} ,</if>
+			<if test="remark2 != null"> #{remark2} ,</if>
+		</trim>
+		)
+	</insert>-->
+
+    <select id="getBy" parameterType="com.mengyou.zhumengyou.model.db.Test" resultMap="testResultMap">
+        select *
+        from `test`
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="id != null and id != 0 ">
+                AND `id` = ${id}
+            </if>
+           <if test="name != null and name !=0 ">
+                AND `name` = ${name}
+            </if>
+        </trim>
+    </select>
+
+</mapper>
