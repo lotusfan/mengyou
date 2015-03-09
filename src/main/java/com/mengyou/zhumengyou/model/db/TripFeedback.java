@@ -72,4 +72,13 @@ public class TripFeedback implements java.io.Serializable {
 		this.vc2content = vc2content;
 	}
 
+	@Override
+	public String toString() {
+		return "TripFeedback{" +
+				"id=" + id +
+				", numuserid=" + numuserid +
+				", datfeedback=" + datfeedback +
+				", vc2content='" + vc2content + '\'' +
+				'}';
+	}
 }

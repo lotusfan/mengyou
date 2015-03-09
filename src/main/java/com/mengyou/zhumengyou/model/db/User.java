@@ -8,9 +8,10 @@ import java.util.Date;
  * @author MyEclipse Persistence Tools
  */
 
-public class TripUser implements java.io.Serializable {
+public class User implements java.io.Serializable {
+    private static final long serialVersionUID = 6528560200635784071L;
 
-	// Fields
+    // Fields
 
 	private Long id;
 	private String vc2nickname;
@@ -57,21 +58,21 @@ public class TripUser implements java.io.Serializable {
 	}
 
 	/** default constructor */
-	public TripUser() {
+	public User() {
 	}
 
 	/** minimal constructor */
-	public TripUser(Long id) {
+	public User(Long id) {
 		this.id = id;
 	}
 
 	/** full constructor */
-	public TripUser(Long id, String vc2nickname, String vc2username,
-			String vc2sex, Date datbirth, String vc2bloodtype,
-			String vc2occupation, String vc2company, String vc2school,
-			String vc2invitationcode, Long numdreammoney, String vc2idcard,
-			String vc2loginaccount, String vc2loginpassword, Date datregister,
-			String vc2mylabel, String vc2bankaccount, String vc2iconpath) {
+	public User(Long id, String vc2nickname, String vc2username,
+                String vc2sex, Date datbirth, String vc2bloodtype,
+                String vc2occupation, String vc2company, String vc2school,
+                String vc2invitationcode, Long numdreammoney, String vc2idcard,
+                String vc2loginaccount, String vc2loginpassword, Date datregister,
+                String vc2mylabel, String vc2bankaccount, String vc2iconpath) {
 		this.id = id;
 		this.vc2nickname = vc2nickname;
 		this.vc2username = vc2username;
@@ -262,5 +263,33 @@ public class TripUser implements java.io.Serializable {
 		this.vc2age = vc2age;
 	}
 
-	
+
+	@Override
+	public String toString() {
+		return "TripUser{" +
+				"id=" + id +
+				", vc2nickname='" + vc2nickname + '\'' +
+				", vc2username='" + vc2username + '\'' +
+				", vc2sex='" + vc2sex + '\'' +
+				", datbirth=" + datbirth +
+				", vc2bloodtype='" + vc2bloodtype + '\'' +
+				", vc2occupation='" + vc2occupation + '\'' +
+				", vc2company='" + vc2company + '\'' +
+				", vc2school='" + vc2school + '\'' +
+				", vc2invitationcode='" + vc2invitationcode + '\'' +
+				", numdreammoney=" + numdreammoney +
+				", vc2idcard='" + vc2idcard + '\'' +
+				", vc2loginaccount='" + vc2loginaccount + '\'' +
+				", vc2loginpassword='" + vc2loginpassword + '\'' +
+				", datregister=" + datregister +
+				", vc2mylabel='" + vc2mylabel + '\'' +
+				", vc2bankaccount='" + vc2bankaccount + '\'' +
+				", vc2iconpath='" + vc2iconpath + '\'' +
+				", vc2xingzuo='" + vc2xingzuo + '\'' +
+				", vc2area='" + vc2area + '\'' +
+				", code='" + code + '\'' +
+				", numeverymoney=" + numeverymoney +
+				", vc2age='" + vc2age + '\'' +
+				'}';
+	}
 }

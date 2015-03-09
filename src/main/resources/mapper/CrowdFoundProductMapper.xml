@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mengyou.zhumengyou.dao.CrowdFoundProductMapper">
+
+    <resultMap id="crowdFoundProductResultMap" type="com.mengyou.zhumengyou.model.db.CrowdFoundProduct">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="vc2nickname" property="vc2nickname"/>
+        <result column="tour_name" property="tourName"/>
+        <result column="lable" property="lable"/>
+        <result column="time_start" property="timeStart"/>
+        <result column="time_end" property="timeEnd"/>
+        <result column="period" property="period"/>
+        <result column="money_total" property="moneyTotal"/>
+        <result column="money_receive" property="moneyReceive"/>
+        <result column="num_total" property="numTotal"/>
+        <result column="num_receive" property="numReceive"/>
+        <result column="operator_id" property="operatorId"/>
+        <result column="operate_time" property="operateTime"/>
+        <result column="status" property="status"/>
+        <result column="describe" property="describe"/>
+        <result column="icon_path" property="iconPath"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+    <insert id="save" parameterType="com.mengyou.zhumengyou.model.db.CrowdFoundProduct" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into `crowd_found_product`(
+        <trim suffixOverrides=",">
+            <if test="userId != null">`user_id`,</if>
+            <if test="vc2nickname != null">`vc2nickname`,</if>
+            <if test="tourName != null">`tour_name`,</if>
+            <if test="lable != null">`lable`,</if>
+            <if test="timeStart != null">`time_start`,</if>
+            <if test="timeEnd != null">`time_end`,</if>
+            <if test="period != null">`period`,</if>
+            <if test="moneyTotal != null">`money_total`,</if>
+            <if test="moneyReceive != null">`money_receive`,</if>
+            <if test="numTotal != null">`num_total`,</if>
+            <if test="numReceive != null">`num_receive`,</if>
+            <if test="operatorId != null">`operator_id`,</if>
+            <if test="operateTime != null">`operate_time`,</if>
+            <if test="status != null">`status`,</if>
+            <if test="describe != null">`describe`,</if>
+            <if test="iconPath != null">`icon_path`,</if>
+            <if test="createTime != null">`create_time`,</if>
+            <if test="updateTime != null">`update_time`,</if>
+        </trim>
+        )values(
+        <trim suffixOverrides=",">
+            <if test="userId != null">#{userId},</if>
+            <if test="vc2nickname != null">#{vc2nickname},</if>
+            <if test="tourName != null">#{tourName},</if>
+            <if test="lable != null">#{lable},</if>
+            <if test="timeStart != null">#{timeStart},</if>
+            <if test="timeEnd != null">#{timeEnd},</if>
+            <if test="period != null">#{period},</if>
+            <if test="moneyTotal != null">#{moneyTotal},</if>
+            <if test="moneyReceive != null">#{moneyReceive},</if>
+            <if test="numTotal != null">#{numTotal},</if>
+            <if test="numReceive != null">#{numReceive},</if>
+            <if test="operatorId != null">#{operatorId},</if>
+            <if test="operateTime != null">#{operateTime},</if>
+            <if test="status != null">#{status},</if>
+            <if test="describe != null">#{describe},</if>
+            <if test="iconPath != null">#{iconPath},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+        </trim>
+        )
+    </insert>
+    <update id="update" parameterType="com.mengyou.zhumengyou.model.db.CrowdFoundProduct">
+        update `crowd_found_product`
+        <trim prefix="set" suffixOverrides=",">
+            <if test="userId != null">`user_id` = #{userId},</if>
+            <if test="vc2nickname != null">`vc2nickname` = #{vc2nickname},</if>
+            <if test="tourName != null">`tour_name` = #{tourName},</if>
+            <if test="lable != null">`lable` = #{lable},</if>
+            <if test="timeStart != null">`time_start` = #{timeStart},</if>
+            <if test="timeEnd != null">`time_end` = #{timeEnd},</if>
+            <if test="period != null">`period` = #{period},</if>
+            <if test="moneyTotal != null">`money_total` = #{moneyTotal},</if>
+            <if test="moneyReceive != null">`money_receive` = #{moneyReceive},</if>
+            <if test="numTotal != null">`num_total` = #{numTotal},</if>
+            <if test="numReceive != null">`num_receive` = #{numReceive},</if>
+            <if test="operatorId != null">`operator_id` = #{operatorId},</if>
+            <if test="operateTime != null">`operate_time` = #{operateTime},</if>
+            <if test="status != null">`status` = #{status},</if>
+            <if test="describe != null">`describe` = #{describe},</if>
+            <if test="iconPath != null">`icon_path` = #{iconPath},</if>
+            <if test="createTime != null">`create_time` = #{createTime},</if>
+            <if test="updateTime != null">`update_time` = #{updateTime},</if>
+        </trim>
+        where `id` = #{id}
+    </update>
+    <select id="getBy" parameterType="com.mengyou.zhumengyou.model.db.CrowdFoundProduct"
+            resultMap="crowdFoundProductResultMap">
+        select * from `crowd_found_product`
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="userId != null">AND `user_id` = #{userId}</if>
+            <if test="vc2nickname != null">AND `vc2nickname` = #{vc2nickname}</if>
+            <if test="tourName != null">AND `tour_name` = #{tourName}</if>
+            <if test="lable != null">AND `lable` = #{lable}</if>
+            <if test="timeStart != null">AND `time_start` = #{timeStart}</if>
+            <if test="timeEnd != null">AND `time_end` = #{timeEnd}</if>
+            <if test="period != null">AND `period` = #{period}</if>
+            <if test="moneyTotal != null">AND `money_total` = #{moneyTotal}</if>
+            <if test="moneyReceive != null">AND `money_receive` = #{moneyReceive}</if>
+            <if test="numTotal != null">AND `num_total` = #{numTotal}</if>
+            <if test="numReceive != null">AND `num_receive` = #{numReceive}</if>
+            <if test="operatorId != null">AND `operator_id` = #{operatorId}</if>
+            <if test="operateTime != null">AND `operate_time` = #{operateTime}</if>
+            <if test="status != null">AND `status` = #{status}</if>
+            <if test="describe != null">AND `describe` = #{describe}</if>
+            <if test="iconPath != null">AND `icon_path` = #{iconPath}</if>
+            <if test="createTime != null">AND `create_time` = #{createTime}</if>
+            <if test="updateTime != null">AND `update_time` = #{updateTime}</if>
+        </trim>
+    </select>
+</mapper>

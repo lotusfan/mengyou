@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.Enumeration;
+
 /**
  * Created by zhangfan on 2015/3/2.
  */
@@ -33,9 +37,32 @@ public class TestAction {
 
     @RequestMapping(value = "/teststring", method = RequestMethod.GET)
     @ResponseBody
-    public String testStringMethod() {
+    public String testStringMethod(HttpServletRequest httpRequest) {
+        HttpSession httpSession = httpRequest.getSession();
+
+        httpSession.setMaxInactiveInterval(10);
+        System.out.println("JSESSIONID "+httpSession.getId());
+        System.out.println(httpSession.getCreationTime());
+        System.out.println(httpSession.getLastAccessedTime());
+        System.out.println(httpRequest.isRequestedSessionIdValid());
+
         System.out.println("test action success!!");
         testService.testMethod();
         return "testString action success";
     }
+    @RequestMapping(value = "/teststring1", method = RequestMethod.GET)
+    @ResponseBody
+    public String testStringMethod1(HttpServletRequest httpRequest) {
+        HttpSession httpSession = httpRequest.getSession();
+
+        httpSession.setMaxInactiveInterval(10);
+        System.out.println("JSESSIONID "+httpSession.getId());
+        System.out.println(httpSession.getCreationTime());
+        System.out.println(httpSession.getLastAccessedTime());
+
+        System.out.println("test action success!!");
+        testService.testMethod();
+        return "testString action success1";
+    }
+
 }

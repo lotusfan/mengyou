@@ -135,4 +135,19 @@ public class TripOrder implements java.io.Serializable {
 		this.datorder = datorder;
 	}
 
+	@Override
+	public String toString() {
+		return "TripOrder{" +
+				"id=" + id +
+				", numactivityid=" + numactivityid +
+				", numuserid=" + numuserid +
+				", vc2name='" + vc2name + '\'' +
+				", vc2status='" + vc2status + '\'' +
+				", datpay=" + datpay +
+				", vc2paytype='" + vc2paytype + '\'' +
+				", numactid=" + numactid +
+				", vc2mobile='" + vc2mobile + '\'' +
+				", datorder=" + datorder +
+				'}';
+	}
 }

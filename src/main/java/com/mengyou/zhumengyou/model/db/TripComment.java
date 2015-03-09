@@ -104,4 +104,16 @@ public class TripComment implements java.io.Serializable {
 		this.vc2content = vc2content;
 	}
 
+	@Override
+	public String toString() {
+		return "TripComment{" +
+				"id=" + id +
+				", numactivityid=" + numactivityid +
+				", numuserid=" + numuserid +
+				", vc2name='" + vc2name + '\'' +
+				", vc2nickname='" + vc2nickname + '\'' +
+				", datcomment=" + datcomment +
+				", vc2content='" + vc2content + '\'' +
+				'}';
+	}
 }

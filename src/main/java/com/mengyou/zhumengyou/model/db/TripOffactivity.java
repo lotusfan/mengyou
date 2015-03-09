@@ -264,4 +264,32 @@ public class TripOffactivity implements java.io.Serializable {
 		this.vc2url = vc2url;
 	}
 
+	@Override
+	public String toString() {
+		return "TripOffactivity{" +
+				"id=" + id +
+				", vc2name='" + vc2name + '\'' +
+				", vc2type='" + vc2type + '\'' +
+				", numpay=" + numpay +
+				", vc2address='" + vc2address + '\'' +
+				", vc2suggest='" + vc2suggest + '\'' +
+				", numapplicants=" + numapplicants +
+				", datpublish=" + datpublish +
+				", datoffline=" + datoffline +
+				", datstart=" + datstart +
+				", datend=" + datend +
+				", datcreate=" + datcreate +
+				", datupdate=" + datupdate +
+				", dataudit=" + dataudit +
+				", vc2creator='" + vc2creator + '\'' +
+				", vc2modifier='" + vc2modifier + '\'' +
+				", vc2auditor='" + vc2auditor + '\'' +
+				", vc2status='" + vc2status + '\'' +
+				", vc2imagepath='" + vc2imagepath + '\'' +
+				", numcomments=" + numcomments +
+				", numpraises=" + numpraises +
+				", numpaynums=" + numpaynums +
+				", vc2url='" + vc2url + '\'' +
+				'}';
+	}
 }

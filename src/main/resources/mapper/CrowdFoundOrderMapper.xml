@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mengyou.zhumengyou.dao.CrowdFoundOrderMapper">
+
+    <resultMap id="crowdFoundOrderResultMap" type="com.mengyou.zhumengyou.model.db.CrowdFoundOrder">
+        <id column="id" property="id"/>
+        <result column="order_type" property="orderType"/>
+        <result column="order_name" property="orderName"/>
+        <result column="user_id" property="userId"/>
+        <result column="vc2nickname" property="vc2nickname"/>
+        <result column="phone" property="phone"/>
+        <result column="support_id" property="supportId"/>
+        <result column="support_money" property="supportMoney"/>
+        <result column="pay_time" property="payTime"/>
+        <result column="product_id" property="productId"/>
+        <result column="status" property="status"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+    <insert id="save" parameterType="com.mengyou.zhumengyou.model.db.CrowdFoundOrder" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into `crowd_found_order`(
+        <trim suffixOverrides=",">
+            <if test="orderType != null">`order_type`,</if>
+            <if test="orderName != null">`order_name`,</if>
+            <if test="userId != null">`user_id`,</if>
+            <if test="vc2nickname != null">`vc2nickname`,</if>
+            <if test="phone != null">`phone`,</if>
+            <if test="supportId != null">`support_id`,</if>
+            <if test="supportMoney != null">`support_money`,</if>
+            <if test="payTime != null">`pay_time`,</if>
+            <if test="productId != null">`product_id`,</if>
+            <if test="status != null">`status`,</if>
+            <if test="createTime != null">`create_time`,</if>
+            <if test="updateTime != null">`update_time`,</if>
+        </trim>
+        )values(
+        <trim suffixOverrides=",">
+            <if test="orderType != null">#{orderType},</if>
+            <if test="orderName != null">#{orderName},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="vc2nickname != null">#{vc2nickname},</if>
+            <if test="phone != null">#{phone},</if>
+            <if test="supportId != null">#{supportId},</if>
+            <if test="supportMoney != null">#{supportMoney},</if>
+            <if test="payTime != null">#{payTime},</if>
+            <if test="productId != null">#{productId},</if>
+            <if test="status != null">#{status},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+        </trim>
+        )
+    </insert>
+    <update id="update" parameterType="com.mengyou.zhumengyou.model.db.CrowdFoundOrder">
+        update `crowd_found_order`
+        <trim prefix="set" suffixOverrides=",">
+            <if test="orderType != null">`order_type` = #{orderType},</if>
+            <if test="orderName != null">`order_name` = #{orderName},</if>
+            <if test="userId != null">`user_id` = #{userId},</if>
+            <if test="vc2nickname != null">`vc2nickname` = #{vc2nickname},</if>
+            <if test="phone != null">`phone` = #{phone},</if>
+            <if test="supportId != null">`support_id` = #{supportId},</if>
+            <if test="supportMoney != null">`support_money` = #{supportMoney},</if>
+            <if test="payTime != null">`pay_time` = #{payTime},</if>
+            <if test="productId != null">`product_id` = #{productId},</if>
+            <if test="status != null">`status` = #{status},</if>
+            <if test="createTime != null">`create_time` = #{createTime},</if>
+            <if test="updateTime != null">`update_time` = #{updateTime},</if>
+        </trim>
+        where `id` = #{id}
+    </update>
+    <select id="getBy" parameterType="com.mengyou.zhumengyou.model.db.CrowdFoundOrder"
+            resultMap="crowdFoundOrderResultMap">
+        select * from `crowd_found_order`
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="orderType != null">AND `order_type` = #{orderType}</if>
+            <if test="orderName != null">AND `order_name` = #{orderName}</if>
+            <if test="userId != null">AND `user_id` = #{userId}</if>
+            <if test="vc2nickname != null">AND `vc2nickname` = #{vc2nickname}</if>
+            <if test="phone != null">AND `phone` = #{phone}</if>
+            <if test="supportId != null">AND `support_id` = #{supportId}</if>
+            <if test="supportMoney != null">AND `support_money` = #{supportMoney}</if>
+            <if test="payTime != null">AND `pay_time` = #{payTime}</if>
+            <if test="productId != null">AND `product_id` = #{productId}</if>
+            <if test="status != null">AND `status` = #{status}</if>
+            <if test="createTime != null">AND `create_time` = #{createTime}</if>
+            <if test="updateTime != null">AND `update_time` = #{updateTime}</if>
+        </trim>
+    </select>
+</mapper>

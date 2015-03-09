@@ -81,4 +81,14 @@ public class TripEnroll implements java.io.Serializable {
 		this.vc2nickname = vc2nickname;
 	}
 
+	@Override
+	public String toString() {
+		return "TripEnroll{" +
+				"id=" + id +
+				", numactivityid=" + numactivityid +
+				", numuserid=" + numuserid +
+				", vc2name='" + vc2name + '\'' +
+				", vc2nickname='" + vc2nickname + '\'' +
+				'}';
+	}
 }

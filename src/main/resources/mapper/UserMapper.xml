@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mengyou.zhumengyou.dao.UserMapper">
+    <resultMap id="tripUserResultMap" type="com.mengyou.zhumengyou.model.db.User">
+        <id column="id" property="id"/>
+        <result column="vc2nickname" property="vc2nickname"/>
+        <result column="vc2username" property="vc2username"/>
+        <result column="vc2sex" property="vc2sex"/>
+        <result column="datbirth" property="datbirth"/>
+        <result column="vc2bloodtype" property="vc2bloodtype"/>
+        <result column="vc2occupation" property="vc2occupation"/>
+        <result column="vc2company" property="vc2company"/>
+        <result column="vc2school" property="vc2school"/>
+        <result column="vc2invitationcode" property="vc2invitationcode"/>
+        <result column="numdreammoney" property="numdreammoney"/>
+        <result column="vc2idcard" property="vc2idcard"/>
+        <result column="vc2loginaccount" property="vc2loginaccount"/>
+        <result column="vc2loginpassword" property="vc2loginpassword"/>
+        <result column="datregister" property="datregister"/>
+        <result column="vc2mylabel" property="vc2mylabel"/>
+        <result column="vc2bankaccount" property="vc2bankaccount"/>
+        <result column="vc2iconpath" property="vc2iconpath"/>
+        <result column="vc2xingzuo" property="vc2xingzuo"/>
+        <result column="vc2area" property="vc2area"/>
+        <result column="code" property="code"/>
+        <result column="numeverymoney" property="numeverymoney"/>
+        <result column="vc2age" property="vc2age"/>
+    </resultMap>
+    <insert id="save" parameterType="com.mengyou.zhumengyou.model.db.User" useGeneratedKeys="true" keyProperty="id">
+        insert into `user`(
+        <trim suffixOverrides=",">
+            <if test="vc2nickname != null">`vc2nickname`,</if>
+            <if test="vc2username != null">`vc2username`,</if>
+            <if test="vc2sex != null">`vc2sex`,</if>
+            <if test="datbirth != null">`datbirth`,</if>
+            <if test="vc2bloodtype != null">`vc2bloodtype`,</if>
+            <if test="vc2occupation != null">`vc2occupation`,</if>
+            <if test="vc2company != null">`vc2company`,</if>
+            <if test="vc2school != null">`vc2school`,</if>
+            <if test="vc2invitationcode != null">`vc2invitationcode`,</if>
+            <if test="numdreammoney != null">`numdreammoney`,</if>
+            <if test="vc2idcard != null">`vc2idcard`,</if>
+            <if test="vc2loginaccount != null">`vc2loginaccount`,</if>
+            <if test="vc2loginpassword != null">`vc2loginpassword`,</if>
+            <if test="datregister != null">`datregister`,</if>
+            <if test="vc2mylabel != null">`vc2mylabel`,</if>
+            <if test="vc2bankaccount != null">`vc2bankaccount`,</if>
+            <if test="vc2iconpath != null">`vc2iconpath`,</if>
+            <if test="vc2xingzuo != null">`vc2xingzuo`,</if>
+            <if test="vc2area != null">`vc2area`,</if>
+            <if test="code != null">`code`,</if>
+            <if test="numeverymoney != null">`numeverymoney`,</if>
+            <if test="vc2age != null">`vc2age`,</if>
+        </trim>
+        )values(
+        <trim suffixOverrides=",">
+            <if test="vc2nickname != null">#{vc2nickname},</if>
+            <if test="vc2username != null">#{vc2username},</if>
+            <if test="vc2sex != null">#{vc2sex},</if>
+            <if test="datbirth != null">#{datbirth},</if>
+            <if test="vc2bloodtype != null">#{vc2bloodtype},</if>
+            <if test="vc2occupation != null">#{vc2occupation},</if>
+            <if test="vc2company != null">#{vc2company},</if>
+            <if test="vc2school != null">#{vc2school},</if>
+            <if test="vc2invitationcode != null">#{vc2invitationcode},</if>
+            <if test="numdreammoney != null">#{numdreammoney},</if>
+            <if test="vc2idcard != null">#{vc2idcard},</if>
+            <if test="vc2loginaccount != null">#{vc2loginaccount},</if>
+            <if test="vc2loginpassword != null">#{vc2loginpassword},</if>
+            <if test="datregister != null">#{datregister},</if>
+            <if test="vc2mylabel != null">#{vc2mylabel},</if>
+            <if test="vc2bankaccount != null">#{vc2bankaccount},</if>
+            <if test="vc2iconpath != null">#{vc2iconpath},</if>
+            <if test="vc2xingzuo != null">#{vc2xingzuo},</if>
+            <if test="vc2area != null">#{vc2area},</if>
+            <if test="code != null">#{code},</if>
+            <if test="numeverymoney != null">#{numeverymoney},</if>
+            <if test="vc2age != null">#{vc2age},</if>
+        </trim>
+        )
+    </insert>
+    <update id="update" parameterType="com.mengyou.zhumengyou.model.db.User">
+        update `user`
+        <trim prefix="set" suffixOverrides=",">
+            <if test="vc2nickname != null">`vc2nickname` = #{vc2nickname},</if>
+            <if test="vc2username != null">`vc2username` = #{vc2username},</if>
+            <if test="vc2sex != null">`vc2sex` = #{vc2sex},</if>
+            <if test="datbirth != null">`datbirth` = #{datbirth},</if>
+            <if test="vc2bloodtype != null">`vc2bloodtype` = #{vc2bloodtype},</if>
+            <if test="vc2occupation != null">`vc2occupation` = #{vc2occupation},</if>
+            <if test="vc2company != null">`vc2company` = #{vc2company},</if>
+            <if test="vc2school != null">`vc2school` = #{vc2school},</if>
+            <if test="vc2invitationcode != null">`vc2invitationcode` = #{vc2invitationcode},</if>
+            <if test="numdreammoney != null">`numdreammoney` = #{numdreammoney},</if>
+            <if test="vc2idcard != null">`vc2idcard` = #{vc2idcard},</if>
+            <if test="vc2loginaccount != null">`vc2loginaccount` = #{vc2loginaccount},</if>
+            <if test="vc2loginpassword != null">`vc2loginpassword` = #{vc2loginpassword},</if>
+            <if test="datregister != null">`datregister` = #{datregister},</if>
+            <if test="vc2mylabel != null">`vc2mylabel` = #{vc2mylabel},</if>
+            <if test="vc2bankaccount != null">`vc2bankaccount` = #{vc2bankaccount},</if>
+            <if test="vc2iconpath != null">`vc2iconpath` = #{vc2iconpath},</if>
+            <if test="vc2xingzuo != null">`vc2xingzuo` = #{vc2xingzuo},</if>
+            <if test="vc2area != null">`vc2area` = #{vc2area},</if>
+            <if test="code != null">`code` = #{code},</if>
+            <if test="numeverymoney != null">`numeverymoney` = #{numeverymoney},</if>
+            <if test="vc2age != null">`vc2age` = #{vc2age},</if>
+        </trim>
+        where `id` = #{id}
+    </update>
+    <select id="getBy" parameterType="com.mengyou.zhumengyou.model.db.User" resultMap="tripUserResultMap">
+        select * from `user`
+        <trim prefix="where" prefixOverrides="AND|OR">
+
+            <if test="id != null">AND `id` = #{id} </if>
+            <if test="vc2nickname != null">AND `vc2nickname` = #{vc2nickname} </if>
+            <if test="vc2username != null">AND `vc2username` = #{vc2username} </if>
+            <if test="vc2sex != null">AND `vc2sex` = #{vc2sex} </if>
+            <if test="datbirth != null">AND `datbirth` = #{datbirth}</if>
+            <if test="vc2bloodtype != null">AND `vc2bloodtype` = #{vc2bloodtype}</if>
+            <if test="vc2occupation != null">AND `vc2occupation` = #{vc2occupation}</if>
+            <if test="vc2company != null">AND `vc2company` = #{vc2company}</if>
+            <if test="vc2school != null">AND `vc2school` = #{vc2school}</if>
+            <if test="vc2invitationcode != null">AND `vc2invitationcode` = #{vc2invitationcode}</if>
+            <if test="numdreammoney != null">AND `numdreammoney` = #{numdreammoney}</if>
+            <if test="vc2idcard != null">AND `vc2idcard` = #{vc2idcard}</if>
+            <if test="vc2loginaccount != null">AND `vc2loginaccount` = #{vc2loginaccount}</if>
+            <if test="vc2loginpassword != null">AND `vc2loginpassword` = #{vc2loginpassword}</if>
+            <if test="datregister != null">AND `datregister` = #{datregister}</if>
+            <if test="vc2mylabel != null">AND `vc2mylabel` = #{vc2mylabel}</if>
+            <if test="vc2bankaccount != null">AND `vc2bankaccount` = #{vc2bankaccount}</if>
+            <if test="vc2iconpath != null">AND `vc2iconpath` = #{vc2iconpath}</if>
+            <if test="vc2xingzuo != null">AND `vc2xingzuo` = #{vc2xingzuo}</if>
+            <if test="vc2area != null">AND `vc2area` = #{vc2area}</if>
+            <if test="code != null">AND `code` = #{code}</if>
+            <if test="numeverymoney != null">AND `numeverymoney` = #{numeverymoney}</if>
+            <if test="vc2age != null">AND `vc2age` = #{vc2age}</if>
+        </trim>
+    </select>
+</mapper>
