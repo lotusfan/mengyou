@@ -97,6 +97,7 @@
             resultMap="crowdFoundProductResultMap">
         select * from `crowd_found_product`
         <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="id != null">AND `id` = #{id} </if>
             <if test="userId != null">AND `user_id` = #{userId}</if>
             <if test="vc2nickname != null">AND `vc2nickname` = #{vc2nickname}</if>
             <if test="tourName != null">AND `tour_name` = #{tourName}</if>

@@ -62,6 +62,7 @@
     <select id="getBy" parameterType="com.mengyou.zhumengyou.model.db.Transaction" resultMap="transactionResultMap">
         select * from `transaction`
         <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="id != null">AND `id` = #{id} </if>
             <if test="sourceId != null">AND `source_id` = #{sourceId} </if>
             <if test="type != null">AND `type` = #{type} </if>
             <if test="name != null">AND `name` = #{name} </if>

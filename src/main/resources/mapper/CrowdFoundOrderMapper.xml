@@ -73,6 +73,7 @@
             resultMap="crowdFoundOrderResultMap">
         select * from `crowd_found_order`
         <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="id != null">AND `id` = #{id} </if>
             <if test="orderType != null">AND `order_type` = #{orderType}</if>
             <if test="orderName != null">AND `order_name` = #{orderName}</if>
             <if test="userId != null">AND `user_id` = #{userId}</if>

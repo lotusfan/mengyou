@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mengyou.zhumengyou.dao.VersionControllerMapper">
+
+    <resultMap id="versionControllerResultMap" type="com.mengyou.zhumengyou.model.db.VersionController">
+        <id column="id" property="id"/>
+        <result column="mt_type" property="mtType" />
+        <result column="version_code_old" property="versionCodeOld" />
+        <result column="version_code_new" property="versionCodeNew" />
+        <result column="up_content" property="upContent" />
+        <result column="up_time" property="upTime" />
+        <result column="path" property="path" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+    <insert id="save" parameterType="com.mengyou.zhumengyou.model.db.VersionController" useGeneratedKeys="true" keyProperty="id">
+        insert into `version_controller`(
+        <trim suffixOverrides=",">
+            <if test="mtType != null">`mt_type`,</if>
+            <if test="versionCodeOld != null">`version_code_old`,</if>
+            <if test="versionCodeNew != null">`version_code_new`,</if>
+            <if test="upContent != null">`up_content`,</if>
+            <if test="upTime != null">`up_time`,</if>
+            <if test="path != null">`path`,</if>
+            <if test="createTime != null">`create_time`,</if>
+            <if test="updateTime != null">`update_time`,</if></trim>
+        )values(
+        <trim suffixOverrides=",">
+            <if test="mtType != null"> #{mtType},</if>
+            <if test="versionCodeOld != null"> #{versionCodeOld},</if>
+            <if test="versionCodeNew != null"> #{versionCodeNew},</if>
+            <if test="upContent != null"> #{upContent},</if>
+            <if test="upTime != null"> #{upTime},</if>
+            <if test="path != null"> #{path},</if>
+            <if test="createTime != null"> #{createTime},</if>
+            <if test="updateTime != null"> #{updateTime},</if>
+        </trim>
+        )
+    </insert>
+    <update id="update" parameterType="com.mengyou.zhumengyou.model.db.VersionController">
+        update `version_controller`
+        <trim prefix="set" suffixOverrides=",">
+            <if test="mtType != null">`mt_type` = #{mtType},</if>
+            <if test="versionCodeOld != null">`version_code_old` = #{versionCodeOld},</if>
+            <if test="versionCodeNew != null">`version_code_new` = #{versionCodeNew},</if>
+            <if test="upContent != null">`up_content` = #{upContent},</if>
+            <if test="upTime != null">`up_time` = #{upTime},</if>
+            <if test="path != null">`path` = #{path},</if>
+            <if test="createTime != null">`create_time` = #{createTime},</if>
+            <if test="updateTime != null">`update_time` = #{updateTime},</if>
+        </trim>
+        where `id` = #{id}
+    </update>
+    <select id="getBy" parameterType="com.mengyou.zhumengyou.model.db.VersionController" resultMap="versionControllerResultMap">
+        select * from `version_controller`
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="id != null">AND `id` = #{id} </if>
+            <if test="mtType != null">AND `mt_type` = #{mtType} </if>
+            <if test="versionCodeOld != null">AND `version_code_old` = #{versionCodeOld} </if>
+            <if test="versionCodeNew != null">AND `version_code_new` = #{versionCodeNew} </if>
+            <if test="upContent != null">AND `up_content` = #{upContent} </if>
+            <if test="upTime != null">AND `up_time` = #{upTime} </if>
+            <if test="path != null">AND `path` = #{path} </if>
+            <if test="createTime != null">AND `create_time` = #{createTime} </if>
+            <if test="updateTime != null">AND `update_time` = #{updateTime} </if>
+        </trim>
+    </select>
+    <select id="getNewVersionBy" resultType="com.mengyou.zhumengyou.model.db.VersionController" resultMap="versionControllerResultMap">
+        select * from `version_controller`
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="id != null">AND `id` = #{id} </if>
+            <if test="mtType != null">AND `mt_type` = #{mtType} </if>
+            <if test="versionCodeOld != null">AND `version_code_old` = #{versionCodeOld} </if>
+            <if test="versionCodeNew != null">AND `version_code_new` = #{versionCodeNew} </if>
+            <if test="upContent != null">AND `up_content` = #{upContent} </if>
+            <if test="upTime != null">AND `up_time` = #{upTime} </if>
+            <if test="path != null">AND `path` = #{path} </if>
+            <if test="createTime != null">AND `create_time` = #{createTime} </if>
+            <if test="updateTime != null">AND `update_time` = #{updateTime} </if>
+        </trim>
+        order by `create_time` desc limit 1
+    </select>
+</mapper>

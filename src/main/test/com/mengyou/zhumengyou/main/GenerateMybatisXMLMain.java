@@ -8,12 +8,12 @@ import java.lang.reflect.Field;
 public class GenerateMybatisXMLMain {
     public static void main(String[] args) throws Exception {
 
-        Class cl = Class.forName("com.mengyou.zhumengyou.model.db.Transaction");
+        Class cl = Class.forName("com.mengyou.zhumengyou.model.db.VersionController");
         String type = cl.getName();
         String resultMapName = LowerToFirst(cl.getSimpleName())+"ResultMap";
 
         String insertIdName = "save";
-        String dbName = "transaction";
+        String dbName = "version_controller";
 
         String updateIdName = "update";
 
@@ -119,7 +119,6 @@ public class GenerateMybatisXMLMain {
         stringBuffer.append("\n\t<trim prefix=\"where\" prefixOverrides=\"AND|OR\">");
         for (Field field : fields) {
             if (field.getName().equals("serialVersionUID")) continue;
-            if (field.getName().equals("id")) continue;
             stringBuffer.append("\n\t\t<if test=\""+field.getName()+" != null\">AND `"+UpperToLine(field.getName())+"` = #{"+field.getName()+"} </if>");
         }
         stringBuffer.append("\n\t</trim>\n</select>");

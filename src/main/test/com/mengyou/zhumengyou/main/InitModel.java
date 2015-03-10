@@ -36,6 +36,7 @@ public class InitModel {
             String fieldName = field.getName();
 
             if (fieldName.equals("id")) continue;
+            if(fieldName.equals("serialVersionUID")) continue;
 
             Method method = cl.getMethod("set" + UpperToFirst(fieldName), field.getType());
 

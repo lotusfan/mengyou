@@ -45,6 +45,7 @@
     <select id="getBy" parameterType="com.mengyou.zhumengyou.model.db.ProductDiary" resultMap="productDiaryResultMap">
         select * from `product_diary`
         <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="id != null">AND `id` = #{id} </if>
             <if test="productId != null">AND `product_id` = #{productId} </if>
             <if test="content != null">AND `content` = #{content} </if>
             <if test="contentIconPath != null">AND `content_icon_path` = #{contentIconPath} </if>

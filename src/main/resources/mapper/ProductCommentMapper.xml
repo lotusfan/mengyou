@@ -46,6 +46,7 @@
     <select id="getBy" parameterType="com.mengyou.zhumengyou.model.db.ProductComment" resultMap="productCommentResultMap">
         select * from `product_comment`
         <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="id != null">AND `id` = #{id} </if>
             <if test="productId != null">AND `product_id` = #{productId} </if>
             <if test="userId != null">AND `user_id` = #{userId} </if>
             <if test="vc2nickname != null">AND `vc2nickname` = #{vc2nickname} </if>

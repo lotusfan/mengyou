@@ -20,10 +20,11 @@ public class ActionParent {
      * @return
      */
     public boolean isRequestLegal(HttpServletRequest httpServletRequest) {
-        if (!httpServletRequest.isRequestedSessionIdValid()) {
+       /* if (!httpServletRequest.isRequestedSessionIdValid()) {
             return false;
         }
-        return true;
+        return true;*/
+        return httpServletRequest.isRequestedSessionIdValid();
     }
 
     /**
@@ -55,6 +56,16 @@ public class ActionParent {
      */
     public Object transformJSONObjectToModel(RequestModel requestModel, Class cl) {
         return JSON.toJavaObject((JSON)requestModel.getO(), cl);
+    }
+
+
+    /**
+     *版本检测   不实现
+     * @param requestModel
+     * @return
+     */
+    public String checkVersion(RequestModel requestModel) {
+        return null;
     }
 
 

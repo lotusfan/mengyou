@@ -31,11 +31,12 @@ public class UserManagerService {
         try {
             User selectUser = new User();
             selectUser.setVc2loginaccount(userModel.getVc2loginaccount());
-            selectUser.setVc2loginpassword(MD5Encrypt.EncryptMD5(userModel.getVc2loginpassword()));
+//            selectUser.setVc2loginpassword(MD5Encrypt.EncryptMD5(userModel.getVc2loginpassword()));
+            selectUser.setVc2loginpassword(userModel.getVc2loginpassword());
             List<User> list = userMapper.getBy(selectUser);
 
-            if (list == null || list.size() > 1) {
-                return ParameterActionCode.SELECTUSERERROR.getCode();
+            if (list == null || list.size() < 1) {
+                return ParameterActionCode.SELECTUSERERROR.getCode(); //数据库无此数据  返回查询错误码
             }
             return ParameterActionCode.SELECTUSERSUCCESS.getCode();
 
@@ -45,12 +46,16 @@ public class UserManagerService {
         }
     }
 
-    public String userRegister(User userModel) {
+    /**
+     * 用户信息修改
+     * @param userModel
+     * @return
+     */
+    public String userAlert(User userModel) {
         try {
-            if (userModel.getId() == null) {
+            if (userModel.getId() == null) { //没有用户Id  返回错误
                 return ParameterActionCode.NOID.getCode();
             }
-
             userMapper.update(userModel);
             return ParameterActionCode.SELECTUSERSUCCESS.getCode();
 

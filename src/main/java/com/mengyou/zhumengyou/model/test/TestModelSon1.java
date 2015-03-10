@@ -1,9 +1,11 @@
 package com.mengyou.zhumengyou.model.test;
 
+import java.util.Comparator;
+
 /**
  * Created by zhangfan on 2015/3/10.
  */
-public class TestModelSon1 extends TestModelParent{
+public class TestModelSon1 implements Comparable<TestModelSon1>{
 
     private Integer age;
 
@@ -20,5 +22,10 @@ public class TestModelSon1 extends TestModelParent{
         return "TestModelSon1{" +
                 "age=" + age +
                 '}';
+    }
+
+    @Override
+    public int compareTo(TestModelSon1 o) {
+        return o.getAge() - this.getAge();
     }
 }

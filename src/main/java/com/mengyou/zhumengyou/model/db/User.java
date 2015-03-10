@@ -1,5 +1,6 @@
 package com.mengyou.zhumengyou.model.db;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -17,7 +18,7 @@ public class User implements java.io.Serializable {
 	private String vc2nickname;
 	private String vc2username;
 	private String vc2sex;
-	private Date datbirth;
+	private Timestamp datbirth;
 	private String vc2bloodtype;
 	private String vc2occupation;
 	private String vc2company;
@@ -27,7 +28,7 @@ public class User implements java.io.Serializable {
 	private String vc2idcard;
 	private String vc2loginaccount;
 	private String vc2loginpassword;
-	private Date datregister;
+	private Timestamp datregister;
 	private String vc2mylabel;
 	private String vc2bankaccount;
 	private String vc2iconpath;
@@ -68,10 +69,10 @@ public class User implements java.io.Serializable {
 
 	/** full constructor */
 	public User(Long id, String vc2nickname, String vc2username,
-                String vc2sex, Date datbirth, String vc2bloodtype,
+                String vc2sex, Timestamp datbirth, String vc2bloodtype,
                 String vc2occupation, String vc2company, String vc2school,
                 String vc2invitationcode, Long numdreammoney, String vc2idcard,
-                String vc2loginaccount, String vc2loginpassword, Date datregister,
+                String vc2loginaccount, String vc2loginpassword, Timestamp datregister,
                 String vc2mylabel, String vc2bankaccount, String vc2iconpath) {
 		this.id = id;
 		this.vc2nickname = vc2nickname;
@@ -127,13 +128,6 @@ public class User implements java.io.Serializable {
 		this.vc2sex = vc2sex;
 	}
 
-	public Date getDatbirth() {
-		return this.datbirth;
-	}
-
-	public void setDatbirth(Date datbirth) {
-		this.datbirth = datbirth;
-	}
 
 	public String getVc2bloodtype() {
 		return this.vc2bloodtype;
@@ -207,15 +201,23 @@ public class User implements java.io.Serializable {
 		this.vc2loginpassword = vc2loginpassword;
 	}
 
-	public Date getDatregister() {
-		return this.datregister;
-	}
+    public Timestamp getDatbirth() {
+        return datbirth;
+    }
 
-	public void setDatregister(Date datregister) {
-		this.datregister = datregister;
-	}
+    public void setDatbirth(Timestamp datbirth) {
+        this.datbirth = datbirth;
+    }
 
-	public String getVc2mylabel() {
+    public Timestamp getDatregister() {
+        return datregister;
+    }
+
+    public void setDatregister(Timestamp datregister) {
+        this.datregister = datregister;
+    }
+
+    public String getVc2mylabel() {
 		return this.vc2mylabel;
 	}
 
