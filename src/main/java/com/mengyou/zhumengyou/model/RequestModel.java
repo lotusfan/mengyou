@@ -9,6 +9,8 @@ public class RequestModel {
 
     private String version;
 
+    private String userName;
+
     private Object o;
 
     public String getVersion() {
@@ -27,10 +29,19 @@ public class RequestModel {
         this.o = o;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     @Override
     public String toString() {
         return "RequestModel{" +
                 "version='" + version + '\'' +
+                ", userName='" + userName + '\'' +
                 ", o=" + o +
                 '}';
     }

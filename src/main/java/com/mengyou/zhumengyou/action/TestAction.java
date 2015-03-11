@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Enumeration;
 
 /**
  * Created by zhangfan on 2015/3/2.
@@ -41,6 +42,11 @@ public class TestAction extends ActionParent {
     public String testStringMethod(HttpServletRequest httpRequest) {
         HttpSession httpSession = httpRequest.getSession();
 
+        Enumeration en = httpSession.getAttributeNames();
+        while (en.hasMoreElements()) {
+            System.out.println(en.nextElement());
+        }
+        httpSession.setAttribute("time", "" + System.currentTimeMillis());
         httpSession.setMaxInactiveInterval(10);
         System.out.println("JSESSIONID " + httpSession.getId());
         System.out.println(httpSession.getCreationTime());

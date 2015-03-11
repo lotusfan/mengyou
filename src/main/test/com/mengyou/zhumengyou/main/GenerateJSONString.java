@@ -2,8 +2,7 @@ package com.mengyou.zhumengyou.main;
 
 import com.alibaba.fastjson.JSON;
 import com.mengyou.zhumengyou.model.RequestModel;
-import com.mengyou.zhumengyou.model.db.User;
-import com.mengyou.zhumengyou.model.db.VersionController;
+import com.mengyou.zhumengyou.model.db.*;
 import com.mengyou.zhumengyou.model.test.TestModel;
 import com.mengyou.zhumengyou.model.test.TestModelSon1;
 
@@ -40,9 +39,12 @@ public class GenerateJSONString {
         o.setVc2loginpassword("123");
         o.setVc2loginaccount("xiaoming");*/
 
-        User o = (User) InitModel.initModel("com.mengyou.zhumengyou.model.db.User", 0L, new BigDecimal("500.00"), "");
-
         requestModel.setVersion("10.10");
+//        User o = (User) InitModel.initModel("com.mengyou.zhumengyou.model.db.User", 0L, new BigDecimal("500.00"), "");
+//        ProductComment o = (ProductComment) InitModel.initModel("com.mengyou.zhumengyou.model.db.ProductComment", 0L, new BigDecimal("500.00"), "");
+//        ProductDiary o = (ProductDiary) InitModel.initModel("com.mengyou.zhumengyou.model.db.ProductDiary", 0L, new BigDecimal("500.00"), "");
+        SupportOption o = (SupportOption) InitModel.initModel("com.mengyou.zhumengyou.model.db.SupportOption", 0L, new BigDecimal("500.00"), "");
+
         requestModel.setO(o);
 
         System.out.println(JSON.toJSONString(requestModel));

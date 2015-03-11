@@ -25,6 +25,10 @@ public enum ParameterActionCode {
     NOID("0053"), //没有用户ID
     UPDATEERROR("0054"),//更新错误
     UPDATESUCCESS("0055"),//更新成功
+    SELECTERROR("0056"),//查询错误
+    SELECTSUCCESS("0057"),//查询成功
+    INSERTERROR("0059"),//数据添加正确
+    INSERTSUCCESS("0058"),//数据添加错误
 
     ;
 

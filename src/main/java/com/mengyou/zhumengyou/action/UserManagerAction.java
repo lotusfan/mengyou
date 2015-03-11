@@ -34,12 +34,11 @@ public class UserManagerAction extends ActionParent {
      * 用户登录
      *
      * @param requestModel
-     * @param httpServletRequest
      * @return
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public String userLogin(@RequestBody RequestModel requestModel, HttpServletRequest httpServletRequest) {
+    public String userLogin(@RequestBody RequestModel requestModel) {
         try {
             User user = (User) transformJSONObjectToModel(requestModel, User.class); //将requestModel里的o强转为user对象
             return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPSUCCESS.getCode(), userManagerService.userLogin(user), null, null));//返回结构化信息体

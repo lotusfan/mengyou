@@ -1,6 +1,7 @@
 package com.mengyou.zhumengyou.main;
 
 import java.lang.reflect.Field;
+import java.util.Scanner;
 
 /**
  * Created by zhangfan on 2015/3/5.
@@ -8,29 +9,36 @@ import java.lang.reflect.Field;
 public class GenerateMybatisXMLMain {
     public static void main(String[] args) throws Exception {
 
-        Class cl = Class.forName("com.mengyou.zhumengyou.model.db.VersionController");
+        System.out.println("请输入类名：");
+        Scanner scanner = new Scanner(System.in);
+
+        String clname = scanner.next();
+        System.out.println("请输入表名：");
+        String dbName = scanner.next();
+
+        Class cl = Class.forName("com.mengyou.zhumengyou.model.db."+clname);
+//        String dbName = "support_option";
+
+
         String type = cl.getName();
-        String resultMapName = LowerToFirst(cl.getSimpleName())+"ResultMap";
+        String resultMapName = LowerToFirst(cl.getSimpleName()) + "ResultMap";
 
         String insertIdName = "save";
-        String dbName = "version_controller";
 
         String updateIdName = "update";
 
         String selectIdName = "getBy";
 
 
-
-
         Field[] fields = cl.getDeclaredFields();
 
-        generateResultMap(fields,resultMapName,type); //生成ResultMap
+        generateResultMap(fields, resultMapName, type); //生成ResultMap
 
-        generateInsertLable(fields,insertIdName,type,dbName); //生成insert标签
+        generateInsertLable(fields, insertIdName, type, dbName); //生成insert标签
 
-        generateUpdateLable(fields,updateIdName,type,dbName); //生成update标签
+        generateUpdateLable(fields, updateIdName, type, dbName); //生成update标签
 
-        generateSelectLable(fields,selectIdName,type,dbName,resultMapName);
+        generateSelectLable(fields, selectIdName, type, dbName, resultMapName);
     }
 
     /**
