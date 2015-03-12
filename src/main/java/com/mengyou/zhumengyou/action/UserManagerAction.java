@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by zhangfan on 2015/3/9.
@@ -38,9 +39,16 @@ public class UserManagerAction extends ActionParent {
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public String userLogin(@RequestBody RequestModel requestModel) {
+    public String userLogin(@RequestBody RequestModel requestModel, HttpServletRequest httpServletRequest) {
         try {
             User user = (User) transformJSONObjectToModel(requestModel, User.class); //将requestModel里的o强转为user对象
+            String code = userManagerService.userLogin(user);
+            if (ParameterActionCode.SELECTUSERSUCCESS.getCode().equals(code)) {
+                HttpSession httpSession = httpServletRequest.getSession();
+                httpSession.setAttribute("username",user.getVc2loginaccount());//连接验证项
+                httpSession.setMaxInactiveInterval(30*60);//有效时长
+            }
+
             return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPSUCCESS.getCode(), userManagerService.userLogin(user), null, null));//返回结构化信息体
         } catch (Exception e) {
             return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPERROR.getCode(), null, e.getMessage(), null));//服务异常返回

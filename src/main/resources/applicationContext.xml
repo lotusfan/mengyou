@@ -9,6 +9,7 @@
 
 
     <import resource="applicationContext-dao.xml" />
+    <import resource="applicationContext-filter.xml"/>
 
     <mvc:annotation-driven>
         <mvc:message-converters register-defaults="true">

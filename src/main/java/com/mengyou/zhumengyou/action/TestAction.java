@@ -73,4 +73,21 @@ public class TestAction extends ActionParent {
         return "testString action success1";
     }
 
+
+    @RequestMapping(value = "/search.do", method = RequestMethod.GET)
+    @ResponseBody
+    public String testFilter(HttpServletRequest httpRequest) {
+        HttpSession httpSession = httpRequest.getSession();
+        httpSession.setAttribute("username","zhangff");
+
+
+        httpSession.setMaxInactiveInterval(10);
+        System.out.println("JSESSIONID " + httpSession.getId());
+        System.out.println(httpSession.getCreationTime());
+        System.out.println(httpSession.getLastAccessedTime());
+
+        System.out.println("test filter success!!");
+        return "testString filter success1";
+    }
+
 }

@@ -3,11 +3,29 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
     http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
-    <display-name>op-web</display-name>
+<!--<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         id="WebApp_ID" version="3.0">-->
+<display-name>mengyou</display-name>
     <context-param>
         <param-name>webAppRootKey</param-name>
         <param-value>mengyou</param-value>
     </context-param>
+
+    <!-- 加载spring容器，
+        因为后面要加filter，并且注入bean所以用listener加载容器
+        因为在web.xml中会涉及到加载顺序导致filter注入bean的时候出异常
+        web.xml中加载顺序 context-param -> listener -> filter -> servlet
+         -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath*:applicationContext.xml</param-value>
+    </context-param>
+
+
     <!-- 使用Spring的编码过滤器解决乱码问题，在Struts2中不在此处配置; forceEncoding表是是否强制转码 -->
     <filter>
         <filter-name>springEncodingFilter</filter-name>
@@ -42,6 +60,32 @@
         <servlet-name>spring</servlet-name>
         <url-pattern>*.do</url-pattern>
     </servlet-mapping>
+
+
+    <!-- filter 拦截请求-->
+    <filter>
+        <filter-name>DelegatingFilterProxy</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+        <init-param>
+            <param-name>targetBeanName</param-name>
+            <!-- spring中bean的id -->
+            <param-value>loginValidateFilter</param-value>
+        </init-param>
+        <init-param>
+            <param-name>targetFilterLifecycle</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <!-- 只拦截search.do请求 -->
+    <filter-mapping>
+        <filter-name>DelegatingFilterProxy</filter-name>
+        <url-pattern>/search.do</url-pattern>
+        <url-pattern>/user/alert.do</url-pattern>
+        <url-pattern>/function/addcomment.do</url-pattern>
+    </filter-mapping>
+
+
+
 
     <!--<listener>-->
     <!--<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>-->
@@ -88,6 +132,7 @@
     <!--<filter-name>encodingFilter</filter-name>-->
     <!--<url-pattern>/*</url-pattern>-->
     <!--</filter-mapping>-->
+
 
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
