@@ -1,10 +1,8 @@
 package com.mengyou.zhumengyou.main;
 
 import com.alibaba.fastjson.JSON;
-import com.mengyou.zhumengyou.model.RequestModel;
-import com.mengyou.zhumengyou.model.db.*;
-import com.mengyou.zhumengyou.model.test.TestModel;
-import com.mengyou.zhumengyou.model.test.TestModelSon1;
+import com.mengyou.model.RequestModel;
+import com.mengyou.model.db.Suggestion;
 
 import java.math.BigDecimal;
 
@@ -40,10 +38,11 @@ public class GenerateJSONString {
         o.setVc2loginaccount("xiaoming");*/
 
         requestModel.setVersion("10.10");
-//        User o = (User) InitModel.initModel("com.mengyou.zhumengyou.model.db.User", 0L, new BigDecimal("500.00"), "");
+//        User o = (User) InitModel.initModel("com.mengyou.model.db.User", 0L, new BigDecimal("500.00"), "");
 //        ProductComment o = (ProductComment) InitModel.initModel("com.mengyou.zhumengyou.model.db.ProductComment", 0L, new BigDecimal("500.00"), "");
 //        ProductDiary o = (ProductDiary) InitModel.initModel("com.mengyou.zhumengyou.model.db.ProductDiary", 0L, new BigDecimal("500.00"), "");
-        SupportOption o = (SupportOption) InitModel.initModel("com.mengyou.zhumengyou.model.db.SupportOption", 0L, new BigDecimal("500.00"), "");
+//        SupportOption o = (SupportOption) InitModel.initModel("com.mengyou.zhumengyou.model.db.SupportOption", 0L, new BigDecimal("500.00"), "");
+        Suggestion o = (Suggestion) InitModel.initModel("com.mengyou.model.db.Suggestion", 0L, new BigDecimal("500.00"), "");
 
         requestModel.setO(o);
 

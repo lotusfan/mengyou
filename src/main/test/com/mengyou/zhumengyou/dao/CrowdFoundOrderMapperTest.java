@@ -31,7 +31,7 @@ public class CrowdFoundOrderMapperTest {
     public void testUpdate() throws Exception {
 
         CrowdFoundOrder o = (CrowdFoundOrder)InitModel.initModel("com.mengyou.zhumengyou.model.db.CrowdFoundOrder", 0L, new BigDecimal("500.00"), "0000");
-        o.setId(1L);
+        o.setId(8L);
         crowdFoundOrderMapper.update(o);
 
 

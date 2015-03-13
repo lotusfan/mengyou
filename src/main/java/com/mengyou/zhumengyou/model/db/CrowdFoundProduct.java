@@ -25,6 +25,9 @@ public class CrowdFoundProduct {
     private Timestamp operateTime; //操作时间
     private Integer status; //状态
     private String describe; //项目描述
+    private String location1; //位置1
+    private String location2; //位置2
+    private String title; //标题
     private String iconPath; //logo图片路径
     private Timestamp createTime; //记录创建时间
     private Timestamp updateTime; //记录修改时间
@@ -181,9 +184,33 @@ public class CrowdFoundProduct {
         this.updateTime = updateTime;
     }
 
+    public String getLocation1() {
+        return location1;
+    }
+
+    public void setLocation1(String location1) {
+        this.location1 = location1;
+    }
+
+    public String getLocation2() {
+        return location2;
+    }
+
+    public void setLocation2(String location2) {
+        this.location2 = location2;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     @Override
     public String toString() {
-        return "TripCrowdFoundProduct{" +
+        return "CrowdFoundProduct{" +
                 "id=" + id +
                 ", userId=" + userId +
                 ", vc2nickname='" + vc2nickname + '\'' +
@@ -200,6 +227,9 @@ public class CrowdFoundProduct {
                 ", operateTime=" + operateTime +
                 ", status=" + status +
                 ", describe='" + describe + '\'' +
+                ", location1='" + location1 + '\'' +
+                ", location2='" + location2 + '\'' +
+                ", title='" + title + '\'' +
                 ", iconPath='" + iconPath + '\'' +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +

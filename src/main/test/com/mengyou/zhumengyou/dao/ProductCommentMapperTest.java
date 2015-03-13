@@ -30,7 +30,7 @@ public class ProductCommentMapperTest {
     public void testUpdate() throws Exception {
 
         ProductComment o = (ProductComment) InitModel.initModel("com.mengyou.zhumengyou.model.db.ProductComment", 0L, null, "000");
-        o.setId(1L);
+        o.setId(3L);
         productCommentMapper.update(o);
 
     }

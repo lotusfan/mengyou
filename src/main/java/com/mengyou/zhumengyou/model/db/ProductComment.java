@@ -13,6 +13,7 @@ public class ProductComment {
     private Long productId; //项目Id
     private Long userId; //用户Id
     private String vc2nickname; //用户昵称
+    private String vc2sex;//性别
     private String content; //评论内容
     private Timestamp createTime;
     private Timestamp updateTime;
@@ -73,6 +74,14 @@ public class ProductComment {
         this.updateTime = updateTime;
     }
 
+    public String getVc2sex() {
+        return vc2sex;
+    }
+
+    public void setVc2sex(String vc2sex) {
+        this.vc2sex = vc2sex;
+    }
+
     @Override
     public String toString() {
         return "ProductComment{" +
@@ -80,6 +89,7 @@ public class ProductComment {
                 ", productId=" + productId +
                 ", userId=" + userId +
                 ", vc2nickname='" + vc2nickname + '\'' +
+                ", vc2sex='" + vc2sex + '\'' +
                 ", content='" + content + '\'' +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +

@@ -2,11 +2,13 @@ package com.mengyou.zhumengyou.service;
 
 import com.mengyou.zhumengyou.dao.ProductCommentMapper;
 import com.mengyou.zhumengyou.dao.ProductDiaryMapper;
+import com.mengyou.dao.SuggestionMapper;
 import com.mengyou.zhumengyou.dao.SupportOptionMapper;
 import com.mengyou.zhumengyou.model.db.ProductComment;
 import com.mengyou.zhumengyou.model.db.ProductDiary;
+import com.mengyou.model.db.Suggestion;
 import com.mengyou.zhumengyou.model.db.SupportOption;
-import com.mengyou.zhumengyou.model.parametercode.ParameterActionCode;
+import com.mengyou.model.parametercode.ParameterActionCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,8 +35,13 @@ public class ProjectFunctionService {
     @Autowired
     private SupportOptionMapper supportOptionMapper;
 
+    @Autowired
+    private SuggestionMapper suggestionMapper;
+
+
     /**
      * 查询评论（by项目Id）
+     *
      * @param productComment
      * @return
      */
@@ -52,6 +59,7 @@ public class ProjectFunctionService {
 
     /**
      * 添加评论
+     *
      * @param productComment
      * @return
      */
@@ -67,6 +75,7 @@ public class ProjectFunctionService {
 
     /**
      * 查询项目更新日志（by项目Id）
+     *
      * @param productDiary
      * @return
      */
@@ -85,6 +94,7 @@ public class ProjectFunctionService {
 
     /**
      * 添加更新日志
+     *
      * @param productDiary
      * @return
      */
@@ -100,6 +110,7 @@ public class ProjectFunctionService {
 
     /**
      * 修改更新日志
+     *
      * @param productDiary
      * @return
      */
@@ -119,6 +130,7 @@ public class ProjectFunctionService {
 
     /**
      * 查询项目支持项（by项目Id）
+     *
      * @param supportOption
      * @return
      */
@@ -137,6 +149,7 @@ public class ProjectFunctionService {
 
     /**
      * 添加更新日志
+     *
      * @param supportOption
      * @return
      */
@@ -152,6 +165,7 @@ public class ProjectFunctionService {
 
     /**
      * 修改更新日志
+     *
      * @param supportOption
      * @return
      */
@@ -165,6 +179,23 @@ public class ProjectFunctionService {
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return ParameterActionCode.UPDATEERROR.getCode();
+        }
+    }
+
+
+    /**
+     * 添加意见反馈
+     *
+     * @param suggestion
+     * @return
+     */
+    public String saveSuggestion(Suggestion suggestion) {
+        try {
+            suggestionMapper.save(suggestion);
+            return ParameterActionCode.INSERTSUCCESS.getCode();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ParameterActionCode.INSERTERROR.getCode();
         }
     }
 

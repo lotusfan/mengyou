@@ -1,12 +1,15 @@
 package com.mengyou.zhumengyou.dao;
 
-import com.mengyou.zhumengyou.model.db.User;
+import com.mengyou.dao.UserMapper;
+import com.mengyou.zhumengyou.main.InitModel;
+import com.mengyou.model.db.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -20,9 +23,7 @@ public class UserMapperTest {
     @Test
     public void testSave() throws Exception {
 
-        User user = new User();
-        user.setVc2nickname("小明");
-
+        User user = (User) InitModel.initModel("com.mengyou.model.db.User", 0L, new BigDecimal("0"), null);
         userMapper.save(user);
 
     }
@@ -30,10 +31,8 @@ public class UserMapperTest {
     @Test
     public void testUpdate() throws Exception {
 
-        User user = new User();
-        user.setId(2L);
-        user.setVc2nickname("小王");
-
+        User user = (User) InitModel.initModel("com.mengyou.model.db.User", 0L, new BigDecimal("0"), "0000");
+        user.setId(3L);
         userMapper.update(user);
 
     }

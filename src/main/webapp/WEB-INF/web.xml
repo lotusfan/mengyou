@@ -80,8 +80,10 @@
     <filter-mapping>
         <filter-name>DelegatingFilterProxy</filter-name>
         <url-pattern>/search.do</url-pattern>
+        <url-pattern>/testfile.do</url-pattern>
         <url-pattern>/user/alert.do</url-pattern>
         <url-pattern>/function/addcomment.do</url-pattern>
+        <url-pattern>/function/addsuggestion.do</url-pattern>
     </filter-mapping>
 
 

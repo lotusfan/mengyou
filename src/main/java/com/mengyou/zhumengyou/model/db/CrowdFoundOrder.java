@@ -20,6 +20,9 @@ public class CrowdFoundOrder {
     private BigDecimal supportMoney; //支持项金额
     private Timestamp payTime; //支付时间
     private Long productId; //出资项目Id
+    private String twoDimensionCode;//二维码
+    private Integer statusValidate; //验证状态
+    private Timestamp validateTime; //验证时间
     private Integer status; //状态
     private Timestamp createTime; //
     private Timestamp updateTime; //
@@ -105,6 +108,30 @@ public class CrowdFoundOrder {
         this.productId = productId;
     }
 
+    public String getTwoDimensionCode() {
+        return twoDimensionCode;
+    }
+
+    public void setTwoDimensionCode(String twoDimensionCode) {
+        this.twoDimensionCode = twoDimensionCode;
+    }
+
+    public Integer getStatusValidate() {
+        return statusValidate;
+    }
+
+    public void setStatusValidate(Integer statusValidate) {
+        this.statusValidate = statusValidate;
+    }
+
+    public Timestamp getValidateTime() {
+        return validateTime;
+    }
+
+    public void setValidateTime(Timestamp validateTime) {
+        this.validateTime = validateTime;
+    }
+
     public Integer getStatus() {
         return status;
     }
@@ -142,6 +169,9 @@ public class CrowdFoundOrder {
                 ", supportMoney=" + supportMoney +
                 ", payTime=" + payTime +
                 ", productId=" + productId +
+                ", twoDimensionCode='" + twoDimensionCode + '\'' +
+                ", statusValidate=" + statusValidate +
+                ", validateTime=" + validateTime +
                 ", status=" + status +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +

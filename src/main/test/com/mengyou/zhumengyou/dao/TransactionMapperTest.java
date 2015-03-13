@@ -1,7 +1,8 @@
 package com.mengyou.zhumengyou.dao;
 
+import com.mengyou.dao.TransactionMapper;
 import com.mengyou.zhumengyou.main.InitModel;
-import com.mengyou.zhumengyou.model.db.Transaction;
+import com.mengyou.model.db.Transaction;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,14 +22,14 @@ public class TransactionMapperTest {
     @Test
     public void testSave() throws Exception {
 
-        Transaction o = (Transaction) InitModel.initModel("com.mengyou.zhumengyou.model.db.Transaction", 0L, new BigDecimal("500.00"), "");
+        Transaction o = (Transaction) InitModel.initModel("com.mengyou.model.db.Transaction", 0L, new BigDecimal("500.00"), "");
         transactionMapper.save(o);
     }
 
     @Test
     public void testUpdate() throws Exception {
 
-        Transaction o = (Transaction) InitModel.initModel("com.mengyou.zhumengyou.model.db.Transaction", 0L, new BigDecimal("1000.00"), "000");
+        Transaction o = (Transaction) InitModel.initModel("com.mengyou.model.db.Transaction", 0L, new BigDecimal("1000.00"), "000");
         o.setId(1L);
         transactionMapper.update(o);
 

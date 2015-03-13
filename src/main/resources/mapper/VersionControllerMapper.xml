@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.mengyou.zhumengyou.dao.VersionControllerMapper">
+<mapper namespace="com.mengyou.dao.VersionControllerMapper">
 
-    <resultMap id="versionControllerResultMap" type="com.mengyou.zhumengyou.model.db.VersionController">
+    <resultMap id="versionControllerResultMap" type="com.mengyou.model.db.VersionController">
         <id column="id" property="id"/>
         <result column="mt_type" property="mtType" />
         <result column="version_code_old" property="versionCodeOld" />
@@ -13,7 +13,7 @@
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
     </resultMap>
-    <insert id="save" parameterType="com.mengyou.zhumengyou.model.db.VersionController" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" parameterType="com.mengyou.model.db.VersionController" useGeneratedKeys="true" keyProperty="id">
         insert into `version_controller`(
         <trim suffixOverrides=",">
             <if test="mtType != null">`mt_type`,</if>
@@ -37,7 +37,7 @@
         </trim>
         )
     </insert>
-    <update id="update" parameterType="com.mengyou.zhumengyou.model.db.VersionController">
+    <update id="update" parameterType="com.mengyou.model.db.VersionController">
         update `version_controller`
         <trim prefix="set" suffixOverrides=",">
             <if test="mtType != null">`mt_type` = #{mtType},</if>
@@ -51,7 +51,7 @@
         </trim>
         where `id` = #{id}
     </update>
-    <select id="getBy" parameterType="com.mengyou.zhumengyou.model.db.VersionController" resultMap="versionControllerResultMap">
+    <select id="getBy" parameterType="com.mengyou.model.db.VersionController" resultMap="versionControllerResultMap">
         select * from `version_controller`
         <trim prefix="where" prefixOverrides="AND|OR">
             <if test="id != null">AND `id` = #{id} </if>
@@ -65,7 +65,7 @@
             <if test="updateTime != null">AND `update_time` = #{updateTime} </if>
         </trim>
     </select>
-    <select id="getNewVersionBy" resultType="com.mengyou.zhumengyou.model.db.VersionController" resultMap="versionControllerResultMap">
+    <select id="getNewVersionBy" resultType="com.mengyou.model.db.VersionController" resultMap="versionControllerResultMap">
         select * from `version_controller`
         <trim prefix="where" prefixOverrides="AND|OR">
             <if test="id != null">AND `id` = #{id} </if>

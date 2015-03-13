@@ -1,5 +1,6 @@
 package com.mengyou.zhumengyou.dao;
 
+import com.mengyou.zhumengyou.main.InitModel;
 import com.mengyou.zhumengyou.model.db.CrowdFoundProduct;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,23 +23,7 @@ public class CrowdFoundProductMapperTest {
     @Test
     public void testSave() throws Exception {
 
-        CrowdFoundProduct crowdFoundProduct = new CrowdFoundProduct();
-        crowdFoundProduct.setUpdateTime(new Timestamp(System.currentTimeMillis()));
-        crowdFoundProduct.setStatus(3);
-        crowdFoundProduct.setUserId(33L);
-        crowdFoundProduct.setDescribe("你好呀呀 工");
-        crowdFoundProduct.setLable("标签");
-        crowdFoundProduct.setMoneyReceive(new BigDecimal("33.93"));
-        crowdFoundProduct.setMoneyTotal(new BigDecimal("3333.43"));
-        crowdFoundProduct.setNumReceive(3);
-        crowdFoundProduct.setNumTotal(10);
-        crowdFoundProduct.setOperateTime(new Timestamp(System.currentTimeMillis() - 6000));
-        crowdFoundProduct.setOperatorId(55L);
-        crowdFoundProduct.setVc2nickname("小明");
-        crowdFoundProduct.setTourName("去哪");
-        crowdFoundProduct.setPeriod(33);
-        crowdFoundProduct.setTimeStart(crowdFoundProduct.getOperateTime());
-        crowdFoundProduct.setTimeEnd(crowdFoundProduct.getOperateTime());
+        CrowdFoundProduct crowdFoundProduct = (CrowdFoundProduct) InitModel.initModel("com.mengyou.zhumengyou.model.db.CrowdFoundProduct", 0L, new BigDecimal("0"), null);
 
         crowdFoundProductMapper.save(crowdFoundProduct);
     }
@@ -46,26 +31,8 @@ public class CrowdFoundProductMapperTest {
     @Test
     public void testUpdate() throws Exception {
 
-        CrowdFoundProduct crowdFoundProduct = new CrowdFoundProduct();
-
+        CrowdFoundProduct crowdFoundProduct = (CrowdFoundProduct) InitModel.initModel("com.mengyou.zhumengyou.model.db.CrowdFoundProduct", 0L, new BigDecimal("0"), "0000");
         crowdFoundProduct.setId(1L);
-        crowdFoundProduct.setUpdateTime(new Timestamp(System.currentTimeMillis()));
-        crowdFoundProduct.setStatus(3);
-        crowdFoundProduct.setUserId(33L);
-        crowdFoundProduct.setDescribe("你好呀呀 工");
-        crowdFoundProduct.setLable("标签");
-        crowdFoundProduct.setMoneyReceive(new BigDecimal("33.93"));
-        crowdFoundProduct.setMoneyTotal(new BigDecimal("3333.43"));
-        crowdFoundProduct.setNumReceive(3);
-        crowdFoundProduct.setNumTotal(10);
-        crowdFoundProduct.setOperateTime(new Timestamp(System.currentTimeMillis() - 6000));
-        crowdFoundProduct.setOperatorId(55L);
-        crowdFoundProduct.setVc2nickname("小王");
-        crowdFoundProduct.setTourName("去哪");
-        crowdFoundProduct.setPeriod(33);
-        crowdFoundProduct.setTimeStart(crowdFoundProduct.getOperateTime());
-        crowdFoundProduct.setTimeEnd(crowdFoundProduct.getOperateTime());
-
         crowdFoundProductMapper.update(crowdFoundProduct);
     }
 

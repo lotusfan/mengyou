@@ -3,9 +3,9 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.mengyou.zhumengyou.dao.TestMapper">
+<mapper namespace="com.mengyou.dao.TestMapper">
 
-	<resultMap type="com.mengyou.zhumengyou.model.db.Test" id="testResultMap">
+	<resultMap type="com.mengyou.model.db.Test" id="testResultMap">
 		<id column="id" property="id" />
         <result column="name" property="name" />
 	</resultMap>
@@ -65,7 +65,7 @@
 		)
 	</insert>-->
 
-    <select id="getBy" parameterType="com.mengyou.zhumengyou.model.db.Test" resultMap="testResultMap">
+    <select id="getBy" parameterType="com.mengyou.model.db.Test" resultMap="testResultMap">
         select *
         from `test`
         <trim prefix="where" prefixOverrides="AND|OR">

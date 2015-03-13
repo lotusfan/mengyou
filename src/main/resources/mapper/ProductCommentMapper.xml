@@ -7,6 +7,7 @@
         <result column="product_id" property="productId" />
         <result column="user_id" property="userId" />
         <result column="vc2nickname" property="vc2nickname" />
+        <result column="vc2sex" property="vc2sex" />
         <result column="content" property="content" />
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
@@ -17,6 +18,7 @@
             <if test="productId != null">`product_id`,</if>
             <if test="userId != null">`user_id`,</if>
             <if test="vc2nickname != null">`vc2nickname`,</if>
+            <if test="vc2sex != null">`vc2sex`,</if>
             <if test="content != null">`content`,</if>
             <if test="createTime != null">`create_time`,</if>
             <if test="updateTime != null">`update_time`,</if></trim>
@@ -25,6 +27,7 @@
             <if test="productId != null"> #{productId},</if>
             <if test="userId != null"> #{userId},</if>
             <if test="vc2nickname != null"> #{vc2nickname},</if>
+            <if test="vc2sex != null"> #{vc2sex},</if>
             <if test="content != null"> #{content},</if>
             <if test="createTime != null"> #{createTime},</if>
             <if test="updateTime != null"> #{updateTime},</if>
@@ -37,6 +40,7 @@
             <if test="productId != null">`product_id` = #{productId},</if>
             <if test="userId != null">`user_id` = #{userId},</if>
             <if test="vc2nickname != null">`vc2nickname` = #{vc2nickname},</if>
+            <if test="vc2sex != null">`vc2sex` = #{vc2sex},</if>
             <if test="content != null">`content` = #{content},</if>
             <if test="createTime != null">`create_time` = #{createTime},</if>
             <if test="updateTime != null">`update_time` = #{updateTime},</if>
@@ -50,6 +54,7 @@
             <if test="productId != null">AND `product_id` = #{productId} </if>
             <if test="userId != null">AND `user_id` = #{userId} </if>
             <if test="vc2nickname != null">AND `vc2nickname` = #{vc2nickname} </if>
+            <if test="vc2sex != null">AND `vc2sex` = #{vc2sex} </if>
             <if test="content != null">AND `content` = #{content} </if>
             <if test="createTime != null">AND `create_time` = #{createTime} </if>
             <if test="updateTime != null">AND `update_time` = #{updateTime} </if>

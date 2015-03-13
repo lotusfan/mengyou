@@ -18,9 +18,9 @@
     </bean>
 
     <!-- controller要实现controller的handleRequest方法 -->
-    <!--<bean id="demo_index" class="com.mengyou.zhumengyou.action.TestAction"/>-->
+    <!--<bean id="demo_index" class="com.mengyou.action.TestAction"/>-->
 
     <!-- filter的id是在web.xml中配置的那个 -->
-    <bean id="loginValidateFilter" class="com.mengyou.zhumengyou.filter.LoginValidateFilter"/>
+    <bean id="loginValidateFilter" class="com.mengyou.filter.LoginValidateFilter"/>
 
 </beans>

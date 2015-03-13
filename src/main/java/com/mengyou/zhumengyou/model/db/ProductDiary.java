@@ -14,6 +14,8 @@ public class ProductDiary {
     private String content; //内容
     private String contentIconPath; //内容图片
     private Timestamp noteTime; //更新时间
+    private String location1;//位置1
+    private String location2;//位置2
     private Timestamp createTime;
     private Timestamp updateTime;
 
@@ -73,6 +75,22 @@ public class ProductDiary {
         this.updateTime = updateTime;
     }
 
+    public String getLocation1() {
+        return location1;
+    }
+
+    public void setLocation1(String location1) {
+        this.location1 = location1;
+    }
+
+    public String getLocation2() {
+        return location2;
+    }
+
+    public void setLocation2(String location2) {
+        this.location2 = location2;
+    }
+
     @Override
     public String toString() {
         return "ProductDiary{" +
@@ -81,6 +99,8 @@ public class ProductDiary {
                 ", content='" + content + '\'' +
                 ", contentIconPath='" + contentIconPath + '\'' +
                 ", noteTime=" + noteTime +
+                ", location1='" + location1 + '\'' +
+                ", location2='" + location2 + '\'' +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
                 '}';

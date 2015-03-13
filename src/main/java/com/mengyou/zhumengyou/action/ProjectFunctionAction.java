@@ -1,13 +1,12 @@
 package com.mengyou.zhumengyou.action;
 
 import com.alibaba.fastjson.JSON;
-import com.mengyou.zhumengyou.model.RequestModel;
-import com.mengyou.zhumengyou.model.db.ProductComment;
-import com.mengyou.zhumengyou.model.db.ProductDiary;
-import com.mengyou.zhumengyou.model.db.SupportOption;
-import com.mengyou.zhumengyou.model.db.User;
-import com.mengyou.zhumengyou.model.parametercode.HTTPCODE;
-import com.mengyou.zhumengyou.model.parametercode.ParameterActionCode;
+import com.mengyou.action.ActionParent;
+import com.mengyou.model.RequestModel;
+import com.mengyou.model.db.Suggestion;
+import com.mengyou.zhumengyou.model.db.*;
+import com.mengyou.model.parametercode.HTTPCODE;
+import com.mengyou.model.parametercode.ParameterActionCode;
 import com.mengyou.zhumengyou.service.ProjectFunctionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +25,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping(value = "/function")
-public class ProjectFunctionAction extends ActionParent{
+public class ProjectFunctionAction extends ActionParent {
 
 
     @Autowired
@@ -208,5 +207,26 @@ public class ProjectFunctionAction extends ActionParent{
             return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPERROR.getCode(), null, e.getMessage(), null));//服务异常返回
         }
     }
+
+
+    /**
+     * 添加意见反馈
+     * @param requestModel
+     * @return
+     */
+    @RequestMapping(value = "/addsuggestion", method = RequestMethod.POST)
+    @ResponseBody
+    public String suggestionAdd(@RequestBody RequestModel requestModel) {
+        try {
+
+            Suggestion suggestion = (Suggestion) transformJSONObjectToModel(requestModel, Suggestion.class); //将requestModel里的o强转为user对象
+
+            return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPSUCCESS.getCode(), projectFunctionService.saveSuggestion(suggestion), null, null));//返回结构化信息体
+        } catch (Exception e) {
+            return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPERROR.getCode(), null, e.getMessage(), null));//服务异常返回
+        }
+    }
+
+
 
 }

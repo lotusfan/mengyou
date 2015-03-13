@@ -1,7 +1,8 @@
 package com.mengyou.zhumengyou.dao;
 
+import com.mengyou.dao.VersionControllerMapper;
 import com.mengyou.zhumengyou.main.InitModel;
-import com.mengyou.zhumengyou.model.db.VersionController;
+import com.mengyou.model.db.VersionController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,14 +24,14 @@ public class VersionControllerMapperTest {
     @Test
     public void testSave() throws Exception {
 
-        VersionController o = (VersionController) InitModel.initModel("com.mengyou.zhumengyou.model.db.VersionController", 0L, new BigDecimal("500.00"), "");
+        VersionController o = (VersionController) InitModel.initModel("com.mengyou.model.db.VersionController", 0L, new BigDecimal("500.00"), "");
         versionControllerMapper.save(o);
     }
 
     @Test
     public void testUpdate() throws Exception {
 
-        VersionController o = (VersionController)InitModel.initModel("com.mengyou.zhumengyou.model.db.VersionController", 0L, new BigDecimal("500.00"), "0000");
+        VersionController o = (VersionController)InitModel.initModel("com.mengyou.model.db.VersionController", 0L, new BigDecimal("500.00"), "0000");
         o.setId(1L);
         versionControllerMapper.update(o);
 
