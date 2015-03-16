@@ -16,7 +16,7 @@ public class GenerateMybatisXMLMain {
         System.out.println("请输入表名：");
         String dbName = scanner.next();
 
-        Class cl = Class.forName("com.mengyou.zhumengyou.model.db."+clname);
+        Class cl = Class.forName(clname);
 //        String dbName = "support_option";
 
 

@@ -120,7 +120,6 @@ public class TestAction extends ActionParent {
             }
         }
 
-
         return "success";
     }
 

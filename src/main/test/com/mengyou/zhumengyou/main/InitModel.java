@@ -37,6 +37,8 @@ public class InitModel {
 
             if (fieldName.equals("id")) continue;
             if(fieldName.equals("serialVersionUID")) continue;
+            if(fieldName.equals("createTime")) continue;
+            if(fieldName.equals("updateTime")) continue;
 
             Method method = cl.getMethod("set" + UpperToFirst(fieldName), field.getType());
 

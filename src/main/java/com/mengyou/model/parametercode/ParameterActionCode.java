@@ -29,6 +29,8 @@ public enum ParameterActionCode {
     SELECTSUCCESS("0057"),//查询成功
     INSERTERROR("0059"),//数据添加正确
     INSERTSUCCESS("0058"),//数据添加错误
+    UPLOADPICSUCCESS("0059"),//图片存储成功
+    UPLOADPICERROR("0060"),//图片存储出错
 
     ;
 
