@@ -10,4 +10,6 @@ import java.util.List;
 public interface TestMapper {
 
     public List<Test> getBy(Test test);
+
+    public Integer selectCount();
 }

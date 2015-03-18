@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -25,7 +26,10 @@ public class CrowdFoundProductMapperTest {
 
         CrowdFoundProduct crowdFoundProduct = (CrowdFoundProduct) InitModel.initModel("com.mengyou.zhumengyou.model.db.CrowdFoundProduct", 0L, new BigDecimal("0"), null);
 
-        crowdFoundProductMapper.save(crowdFoundProduct);
+        int i = 5;
+        while (i-- > 0) {
+            crowdFoundProductMapper.save(crowdFoundProduct);
+        }
     }
 
     @Test
@@ -40,30 +44,18 @@ public class CrowdFoundProductMapperTest {
     public void testGetBy() throws Exception {
 
         CrowdFoundProduct crowdFoundProduct = new CrowdFoundProduct();
-        crowdFoundProduct.setId(1L);
-        /*tripCrowdFoundProduct.setUpdateTime(new Timestamp(System.currentTimeMillis()));
-        tripCrowdFoundProduct.setUserId(33L);
-        tripCrowdFoundProduct.setDescribe("你好呀呀 工");
-        tripCrowdFoundProduct.setLable("标签");
-        tripCrowdFoundProduct.setMoneyReceive(new BigDecimal("33.93"));
-        tripCrowdFoundProduct.setMoneyTotal(new BigDecimal("3333.43"));
-        tripCrowdFoundProduct.setNumReceive(3);
-        tripCrowdFoundProduct.setNumTotal(10);
-        tripCrowdFoundProduct.setOperateTime(new Timestamp(System.currentTimeMillis() - 6000));
-        tripCrowdFoundProduct.setOperatorId(55L);
-        tripCrowdFoundProduct.setVc2nickname("小明");
-        tripCrowdFoundProduct.setTourName("去哪");
-        tripCrowdFoundProduct.setPeriod(33);
-        tripCrowdFoundProduct.setTimeStart(tripCrowdFoundProduct.getOperateTime());
-        tripCrowdFoundProduct.setTimeEnd(tripCrowdFoundProduct.getOperateTime());*/
+        Calendar calendar = Calendar.getInstance();
+        calendar.clear();
+        calendar.set(Calendar.YEAR, 2015);
+        crowdFoundProduct.setCreateTime(new Timestamp(calendar.getTimeInMillis()));
+        System.out.println(crowdFoundProductMapper.getBy(crowdFoundProduct));
 
-        List<CrowdFoundProduct> list =  crowdFoundProductMapper.getBy(crowdFoundProduct);
 
-        if (list != null) {
-            for (CrowdFoundProduct foundProduct : list) {
-                System.out.println(foundProduct);
-            }
-        }
 
+    }
+
+    @Test
+    public void testGetById() throws  Exception{
+        System.out.println(crowdFoundProductMapper.getById(1L));
     }
 }

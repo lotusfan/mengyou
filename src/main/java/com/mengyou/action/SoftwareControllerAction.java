@@ -1,6 +1,7 @@
 package com.mengyou.action;
 
 import com.alibaba.fastjson.JSON;
+import com.mengyou.model.IndividualPageModel;
 import com.mengyou.model.RequestModel;
 import com.mengyou.model.db.Pic;
 import com.mengyou.model.db.VersionController;
@@ -98,4 +99,29 @@ public class SoftwareControllerAction extends ActionParent {
         }
     }
 
+    /**
+     * 个人中心初始接口
+     *
+     * @param requestModel
+     * @return
+     */
+
+    @RequestMapping(value = "/individualpage", method = RequestMethod.POST)
+    @ResponseBody
+    public String getIndividualPage(@RequestBody RequestModel requestModel) {
+
+        try {
+            IndividualPageModel individualPageModel = (IndividualPageModel) transformJSONObjectToModel(requestModel, IndividualPageModel.class); //将requestModel里的o强转为user对象
+
+            individualPageModel = softwareControllerService.getIndividualPage(individualPageModel);
+            if (individualPageModel == null) {
+                return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPSUCCESS.getCode(), ParameterActionCode.SELECTERROR.getCode(), null, null));//返回结构化信息体
+            }
+            return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPSUCCESS.getCode(), ParameterActionCode.SELECTSUCCESS.getCode(), null, individualPageModel));//返回结构化信息体
+        } catch (Exception e) {
+            e.printStackTrace();
+            return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPERROR.getCode(), null, e.getMessage(), null));//服务异常返回
+        }
+
+    }
 }

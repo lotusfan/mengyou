@@ -14,4 +14,6 @@ public interface CrowdFoundProductMapper {
     public void update(CrowdFoundProduct crowdFoundProduct);
 
     public List<CrowdFoundProduct> getBy(CrowdFoundProduct crowdFoundProduct);
+
+    public CrowdFoundProduct getById(Long id);
 }

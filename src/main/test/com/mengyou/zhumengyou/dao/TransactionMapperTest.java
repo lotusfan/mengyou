@@ -10,6 +10,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -23,7 +25,10 @@ public class TransactionMapperTest {
     public void testSave() throws Exception {
 
         Transaction o = (Transaction) InitModel.initModel("com.mengyou.model.db.Transaction", 0L, new BigDecimal("500.00"), "");
-        transactionMapper.save(o);
+        int i = 5;
+        while (i-- > 0) {
+            transactionMapper.save(o);
+        }
     }
 
     @Test
@@ -38,14 +43,17 @@ public class TransactionMapperTest {
     @Test
     public void testGetBy() throws Exception {
 
-        Transaction productDiary = new Transaction();
-        productDiary.setId(1L);
-        List<Transaction> list = transactionMapper.getBy(productDiary);
+        Transaction transaction = new Transaction();
 
-        if (list != null) {
-            for (Transaction comment : list) {
-                System.out.println(comment);
-            }
-        }
+        Calendar calendar = Calendar.getInstance();
+        calendar.clear();
+        calendar.set(Calendar.YEAR, 2015);
+        transaction.setTime(new Timestamp(calendar.getTimeInMillis()));
+        System.out.println(transactionMapper.getBy(transaction).size());
+    }
+    @Test
+    public void testGetCountBy() throws Exception {
+        Transaction transaction = new Transaction();
+        System.out.println(transactionMapper.getCountBy(transaction));
     }
 }

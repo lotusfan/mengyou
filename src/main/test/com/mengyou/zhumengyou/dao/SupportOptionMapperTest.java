@@ -50,7 +50,11 @@ public class SupportOptionMapperTest {
                 System.out.println(o);
             }
         }
-
+    }
+    @Test
+    public void testGetCountBy() throws Exception {
+        SupportOption supportOption = new SupportOption();
+        System.out.println(supportOptionMapper.getCountBy(supportOption));
 
     }
 }

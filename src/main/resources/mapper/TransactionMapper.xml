@@ -68,6 +68,23 @@
             <if test="name != null">AND `name` = #{name} </if>
             <if test="status != null">AND `status` = #{status} </if>
             <if test="money != null">AND `money` = #{money} </if>
+            <if test="time != null">AND `time` > #{time} </if>
+            <if test="userId != null">AND `user_id` = #{userId} </if>
+            <if test="vc2nickname != null">AND `vc2nickname` = #{vc2nickname} </if>
+            <if test="createTime != null">AND `create_time` = #{createTime} </if>
+            <if test="updateTime != null">AND `update_time` = #{updateTime} </if>
+        </trim>
+    </select>
+
+    <select id="getCountBy" parameterType="com.mengyou.model.db.Transaction" resultType="java.lang.Integer">
+        select COUNT(*) from `transaction`
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="id != null">AND `id` = #{id} </if>
+            <if test="sourceId != null">AND `source_id` = #{sourceId} </if>
+            <if test="type != null">AND `type` = #{type} </if>
+            <if test="name != null">AND `name` = #{name} </if>
+            <if test="status != null">AND `status` = #{status} </if>
+            <if test="money != null">AND `money` = #{money} </if>
             <if test="time != null">AND `time` = #{time} </if>
             <if test="userId != null">AND `user_id` = #{userId} </if>
             <if test="vc2nickname != null">AND `vc2nickname` = #{vc2nickname} </if>
@@ -75,4 +92,6 @@
             <if test="updateTime != null">AND `update_time` = #{updateTime} </if>
         </trim>
     </select>
+
+
 </mapper>

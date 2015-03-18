@@ -1,6 +1,7 @@
 package com.mengyou.zhumengyou.main;
 
 import com.alibaba.fastjson.JSON;
+import com.mengyou.model.IndividualPageModel;
 import com.mengyou.model.RequestModel;
 import com.mengyou.model.db.Pic;
 import com.mengyou.model.db.Suggestion;
@@ -11,7 +12,7 @@ import java.math.BigDecimal;
  * Created by zhangfan on 2015/3/9.
  */
 public class GenerateJSONString {
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
        /* RequestModel requestModel = new RequestModel();
         TestModel testModel = new TestModel();
         testModel.setName("zhangfan");
@@ -44,7 +45,8 @@ public class GenerateJSONString {
 //        ProductDiary o = (ProductDiary) InitModel.initModel("com.mengyou.zhumengyou.model.db.ProductDiary", 0L, new BigDecimal("500.00"), "");
 //        SupportOption o = (SupportOption) InitModel.initModel("com.mengyou.zhumengyou.model.db.SupportOption", 0L, new BigDecimal("500.00"), "");
 //        Suggestion o = (Suggestion) InitModel.initModel("com.mengyou.model.db.Suggestion", 0L, new BigDecimal("500.00"), "");
-        Pic o = (Pic)InitModel.initModel("com.mengyou.model.db.Pic", 0L, new BigDecimal("500.00"), "");
+//        Pic o = (Pic)InitModel.initModel("com.mengyou.model.db.Pic", 0L, new BigDecimal("500.00"), "");
+        IndividualPageModel o = (IndividualPageModel) InitModel.initModel("com.mengyou.model.IndividualPageModel", 0L, new BigDecimal("200.00"), "");
 
         requestModel.setO(o);
 

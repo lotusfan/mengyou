@@ -14,4 +14,6 @@ public interface TransactionMapper {
     public void update(Transaction transaction);
 
     public List<Transaction> getBy(Transaction transaction);
+
+    public Integer getCountBy(Transaction transaction);
 }

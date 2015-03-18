@@ -15,4 +15,6 @@ public interface SupportOptionMapper {
     public void update(SupportOption supportOption);
 
     public List<SupportOption> getBy(SupportOption supportOption);
+
+    public Integer getCountBy(SupportOption supportOption);
 }

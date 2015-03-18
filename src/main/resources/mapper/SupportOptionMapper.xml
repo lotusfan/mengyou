@@ -65,4 +65,19 @@
             <if test="updateTime != null">AND `update_time` = #{updateTime} </if>
         </trim>
     </select>
+
+    <select id="getCountBy" parameterType="com.mengyou.zhumengyou.model.db.SupportOption" resultType="java.lang.Integer">
+        select COUNT(*) from `support_option`
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="id != null">AND `id` = #{id} </if>
+            <if test="productId != null">AND `product_id` = #{productId} </if>
+            <if test="supportName != null">AND `support_name` = #{supportName} </if>
+            <if test="supportDescription != null">AND `support_description` = #{supportDescription} </if>
+            <if test="supportMoney != null">AND `support_money` = #{supportMoney} </if>
+            <if test="sequencing != null">AND `sequencing` = #{sequencing} </if>
+            <if test="supportIconPath != null">AND `support_icon_path` = #{supportIconPath} </if>
+            <if test="createTime != null">AND `create_time` = #{createTime} </if>
+            <if test="updateTime != null">AND `update_time` = #{updateTime} </if>
+        </trim>
+    </select>
 </mapper>
