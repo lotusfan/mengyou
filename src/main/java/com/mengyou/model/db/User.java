@@ -41,10 +41,12 @@ public class User implements java.io.Serializable {
     private String location2;
     private Timestamp createTime;
     private Timestamp updateTime;
-	
+
+    //前端展示用
+    private String authentiCode;
 
 
-	// Constructors
+    // Constructors
 
 	public String getVc2xingzuo() {
 		return vc2xingzuo;
@@ -301,6 +303,14 @@ public class User implements java.io.Serializable {
         this.updateTime = updateTime;
     }
 
+    public String getAuthentiCode() {
+        return authentiCode;
+    }
+
+    public void setAuthentiCode(String authentiCode) {
+        this.authentiCode = authentiCode;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -331,6 +341,7 @@ public class User implements java.io.Serializable {
                 ", location2='" + location2 + '\'' +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
+                ", authentiCode='" + authentiCode + '\'' +
                 '}';
     }
 }

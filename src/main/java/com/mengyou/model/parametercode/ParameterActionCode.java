@@ -14,9 +14,11 @@ public enum ParameterActionCode {
     TIMEOUT("0004"),
     SERVERERROR("0005"),
     REQUESTLEGAL("0006"),
-    VERSIONINCOMPLETE("0007"), //版本信息不全
+    VERSIONINCOMPLETE("0007"), //版本信息不完整
     VERSIONNEEDUPDATE("0008"),//版本需要更新
-    VERSIONNOTNEEDUPDATE("0009"),//怎么不需要更新
+    VERSIONNOTNEEDUPDATE("0009"),//版本不需要更新
+    SESSIONINVALID("0010"),//Session过期超时
+    DATANOTCOMPLETE("0011"),//上传数据不完整
 
 
     /*服务器层*/
@@ -31,6 +33,8 @@ public enum ParameterActionCode {
     INSERTSUCCESS("0058"),//数据添加错误
     UPLOADPICSUCCESS("0059"),//图片存储成功
     UPLOADPICERROR("0060"),//图片存储出错
+    AUTHENTICODEERROR("0061"),//验证码发送失败
+    AUTHENTICODESUCCESS("0062"),//验证码发送成功
 
     ;
 
