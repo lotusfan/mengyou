@@ -122,6 +122,17 @@
         </trim>
         where `id` = #{id}
     </update>
+
+    <update id="updatePassword" parameterType="com.mengyou.model.db.User">
+        update `user`
+        <trim prefix="set" suffixOverrides=",">
+            <if test="vc2loginpassword != null">`vc2loginpassword` = #{vc2loginpassword},</if>
+        </trim>
+        <trim prefix="where" prefixOverrides="AND|OR">
+        <if test="vc2loginaccount != null">AND　`vc2loginaccount` = #{vc2loginaccount},</if>
+        </trim>
+    </update>
+
     <select id="getBy" parameterType="com.mengyou.model.db.User" resultMap="userResultMap">
         select * from `user`
         <trim prefix="where" prefixOverrides="AND|OR">

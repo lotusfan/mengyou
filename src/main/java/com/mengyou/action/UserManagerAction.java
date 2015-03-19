@@ -85,7 +85,7 @@ public class UserManagerAction extends ActionParent {
 
     @RequestMapping(value = "/smsregiste", method = RequestMethod.POST)
     @ResponseBody
-    public String smsRegiste(@RequestBody RequestModel requestModel ,HttpServletRequest httpServletRequest) {
+    public String smsRegiste(@RequestBody RequestModel requestModel, HttpServletRequest httpServletRequest) {
 
         try {
             User user = (User) transformJSONObjectToModel(requestModel, User.class);
@@ -96,10 +96,8 @@ public class UserManagerAction extends ActionParent {
             return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPSUCCESS.getCode(), userManagerService.smsRegiste(user, httpServletRequest.getSession()), null, null));//返回Session过期
 
         } catch (Exception e) {
-            e.printStackTrace();
+            return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPERROR.getCode(), null, e.getMessage(), null));//服务异常返回
         }
-
-        return null;
     }
 
     /**
@@ -133,4 +131,59 @@ public class UserManagerAction extends ActionParent {
         }
     }
 
+    /**
+     * 用户找回密码发送信息
+     *
+     * @param requestModel
+     * @param httpServletRequest
+     * @return
+     */
+
+    @RequestMapping(value = "/smsretrieve", method = RequestMethod.POST)
+    @ResponseBody
+    public String smsRetrieve(@RequestBody RequestModel requestModel, HttpServletRequest httpServletRequest) {
+
+        try {
+            User user = (User) transformJSONObjectToModel(requestModel, User.class);
+
+            if (user.getVc2loginaccount() == null) {
+                return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPSUCCESS.getCode(), ParameterActionCode.DATANOTCOMPLETE.getCode(), null, null));//返回Session过期
+            }
+            return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPSUCCESS.getCode(), userManagerService.smsRetrieve(user, httpServletRequest.getSession()), null, null));//返回Session过期
+        } catch (Exception e) {
+            return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPERROR.getCode(), null, e.getMessage(), null));//服务异常返回
+        }
+    }
+
+
+    /**
+     * 用户找回密码
+     *
+     * @param requestModel
+     * @param httpServletRequest
+     * @return
+     */
+    @RequestMapping(value = "/retrieve", method = RequestMethod.POST)
+    @ResponseBody
+    public String userRetrieve(@RequestBody RequestModel requestModel, HttpServletRequest httpServletRequest) {
+        try {
+            if (!httpServletRequest.isRequestedSessionIdValid()) {
+                return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPSUCCESS.getCode(), ParameterActionCode.SESSIONINVALID.getCode(), null, null));//返回Session过期
+            }
+            User user = (User) transformJSONObjectToModel(requestModel, User.class);
+            if (user.getAuthentiCode() == null || user.getVc2loginaccount() == null) {
+                return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPSUCCESS.getCode(), ParameterActionCode.DATANOTCOMPLETE.getCode(), null, null));//返回数据上传不完整
+            }
+
+            HttpSession httpSession = httpServletRequest.getSession();
+            if (!user.getAuthentiCode().equals((String) httpSession.getAttribute("authentiCode")) || !user.getVc2loginaccount().equals((String) httpSession.getAttribute("vc2loginaccount"))) {
+                return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPSUCCESS.getCode(), ParameterActionCode.SESSIONINVALID.getCode(), null, null));//返回Session过期
+            }
+
+            return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPSUCCESS.getCode(), userManagerService.userRetrieve(user), null, null));//返回Session过期
+
+        } catch (Exception e) {
+            return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPERROR.getCode(), null, e.getMessage(), null));//服务异常返回
+        }
+    }
 }

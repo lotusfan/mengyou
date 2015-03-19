@@ -105,4 +105,47 @@ public class UserManagerService {
             return ParameterActionCode.INSERTERROR.getCode();
         }
     }
+
+
+    /**
+     * 用户找回密码发送验证码
+     * @param user
+     * @return
+     */
+    public String smsRetrieve(User user, HttpSession httpSession) {
+        try {
+            String authenticode = "" + Random6Digit.generatePin();
+            String loginContent = ParseProperties.get("msretrievepw").replaceAll("XXXXXX", authenticode);
+            if (!SmsUtil.sendMessage(user.getVc2loginaccount(), loginContent)) {
+                return ParameterActionCode.AUTHENTICODEERROR.getCode();
+            }
+
+            //将验证信息放入Session
+            httpSession.setAttribute("authenticode", authenticode);
+            httpSession.setAttribute("vc2loginaccount", user.getVc2loginaccount());
+            httpSession.setMaxInactiveInterval(2*60);
+            return ParameterActionCode.AUTHENTICODESUCCESS.getCode();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ParameterActionCode.AUTHENTICODEERROR.getCode();
+        }
+    }
+
+    /**
+     * 用户找回密码
+     * @param user
+     * @return
+     */
+    public String userRetrieve(User user) {
+        try {
+            User u = new User();
+            u.setVc2loginaccount(user.getVc2loginaccount());
+            u.setVc2loginpassword(user.getVc2loginpassword());
+            userMapper.updatePassword(u);
+            return ParameterActionCode.UPDATESUCCESS.getCode();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ParameterActionCode.UPDATEERROR.getCode();
+        }
+    }
 }
