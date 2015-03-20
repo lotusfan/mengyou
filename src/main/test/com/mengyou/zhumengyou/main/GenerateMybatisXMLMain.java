@@ -1,5 +1,9 @@
 package com.mengyou.zhumengyou.main;
 
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
 import java.lang.reflect.Field;
 import java.util.Scanner;
 
@@ -32,13 +36,20 @@ public class GenerateMybatisXMLMain {
 
         Field[] fields = cl.getDeclaredFields();
 
-        generateResultMap(fields, resultMapName, type); //生成ResultMap
+        StringBuffer stringBuffer = new StringBuffer();
 
-        generateInsertLable(fields, insertIdName, type, dbName); //生成insert标签
+        generateResultMap(fields, resultMapName, type, stringBuffer); //生成ResultMap
 
-        generateUpdateLable(fields, updateIdName, type, dbName); //生成update标签
+        generateInsertLable(fields, insertIdName, type, dbName, stringBuffer); //生成insert标签
 
-        generateSelectLable(fields, selectIdName, type, dbName, resultMapName);
+        generateUpdateLable(fields, updateIdName, type, dbName, stringBuffer); //生成update标签
+
+        generateSelectLable(fields, selectIdName, type, dbName, resultMapName, stringBuffer); //生成select标签
+
+        //将内容粘贴到 剪切板中
+        Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+        Transferable t = new StringSelection(stringBuffer.toString());
+        cb.setContents(t, null);
     }
 
     /**
@@ -47,8 +58,7 @@ public class GenerateMybatisXMLMain {
      * @param resultMapName
      * @param type
      */
-    public static void generateResultMap(Field[] fileds, String resultMapName, String type) {
-        StringBuffer stringBuffer = new StringBuffer();
+    public static void generateResultMap(Field[] fileds, String resultMapName, String type,StringBuffer stringBuffer) {
         stringBuffer.append("<resultMap id=\"" + resultMapName + "\" type=\"" + type + "\">");
         for (Field field : fileds) {
             if (field.getName().equals("serialVersionUID")) continue;
@@ -60,6 +70,7 @@ public class GenerateMybatisXMLMain {
         }
         stringBuffer.append(" \n</resultMap>");
         System.out.println(stringBuffer.toString());
+        stringBuffer.append("\n");
     }
 
     /**
@@ -69,8 +80,7 @@ public class GenerateMybatisXMLMain {
      * @param type
      * @param dbName
      */
-    public static void generateInsertLable(Field[] fields, String insertIdName, String type, String dbName) {
-        StringBuffer stringBuffer = new StringBuffer();
+    public static void generateInsertLable(Field[] fields, String insertIdName, String type, String dbName, StringBuffer stringBuffer) {
         stringBuffer.append("<insert id=\""+insertIdName+"\" parameterType=\""+type+"\" useGeneratedKeys=\"true\" keyProperty=\"id\">");
         stringBuffer.append("\n\tinsert into `"+dbName+"`(");
         stringBuffer.append("\n\t<trim suffixOverrides=\",\">");
@@ -86,8 +96,9 @@ public class GenerateMybatisXMLMain {
             stringBuffer.append("\n\t\t<if test=\""+field.getName()+" != null\"> #{"+field.getName()+"},</if>");
         }
         stringBuffer.append("\n\t</trim>\n\t)\n</insert>");
-
         System.out.println(stringBuffer.toString());
+        stringBuffer.append("\n");
+
     }
 
     /**
@@ -97,8 +108,7 @@ public class GenerateMybatisXMLMain {
      * @param type
      * @param dbName
      */
-    public static void generateUpdateLable(Field[] fields, String updateIdName, String type, String dbName) {
-        StringBuffer stringBuffer = new StringBuffer();
+    public static void generateUpdateLable(Field[] fields, String updateIdName, String type, String dbName, StringBuffer stringBuffer) {
         stringBuffer.append("<update id=\""+updateIdName+"\" parameterType=\""+type+"\">");
         stringBuffer.append("\n\tupdate `"+dbName+"`");
         stringBuffer.append("\n\t<trim prefix=\"set\" suffixOverrides=\",\">");
@@ -109,6 +119,8 @@ public class GenerateMybatisXMLMain {
         }
         stringBuffer.append("\n\t</trim>\n\twhere `id` = #{id}\n</update>");
         System.out.println(stringBuffer.toString());
+        stringBuffer.append("\n");
+
 
     }
 
@@ -120,8 +132,7 @@ public class GenerateMybatisXMLMain {
      * @param dbName
      * @param resultMapName
      */
-    public static void generateSelectLable(Field[] fields, String selectIdName, String type, String dbName, String resultMapName) {
-        StringBuffer stringBuffer = new StringBuffer();
+    public static void generateSelectLable(Field[] fields, String selectIdName, String type, String dbName, String resultMapName, StringBuffer stringBuffer) {
         stringBuffer.append("<select id=\""+selectIdName+"\" parameterType=\""+type+"\" resultMap=\""+resultMapName+"\">");
         stringBuffer.append("\n\tselect * from `"+dbName+"`");
         stringBuffer.append("\n\t<trim prefix=\"where\" prefixOverrides=\"AND|OR\">");
@@ -131,6 +142,8 @@ public class GenerateMybatisXMLMain {
         }
         stringBuffer.append("\n\t</trim>\n</select>");
         System.out.println(stringBuffer.toString());
+        stringBuffer.append("\n");
+
 
     }
 

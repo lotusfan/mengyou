@@ -11,7 +11,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Calendar;
-import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:applicationContext.xml"})
@@ -44,10 +43,7 @@ public class CrowdFoundProductMapperTest {
     public void testGetBy() throws Exception {
 
         CrowdFoundProduct crowdFoundProduct = new CrowdFoundProduct();
-        Calendar calendar = Calendar.getInstance();
-        calendar.clear();
-        calendar.set(Calendar.YEAR, 2015);
-        crowdFoundProduct.setCreateTime(new Timestamp(calendar.getTimeInMillis()));
+        crowdFoundProduct.setId(1L);
         System.out.println(crowdFoundProductMapper.getBy(crowdFoundProduct));
 
 

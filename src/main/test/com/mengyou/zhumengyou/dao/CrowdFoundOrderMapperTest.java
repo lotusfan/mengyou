@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:applicationContext.xml"})
@@ -24,14 +25,18 @@ public class CrowdFoundOrderMapperTest {
     public void testSave() throws Exception {
 
         CrowdFoundOrder o = (CrowdFoundOrder)InitModel.initModel("com.mengyou.zhumengyou.model.db.CrowdFoundOrder", 0L, new BigDecimal("500.00"), "");
-        crowdFoundOrderMapper.save(o);
+
+        int i = 5;
+        while (i-- > 0) {
+            crowdFoundOrderMapper.save(o);
+        }
     }
 
     @Test
     public void testUpdate() throws Exception {
 
         CrowdFoundOrder o = (CrowdFoundOrder)InitModel.initModel("com.mengyou.zhumengyou.model.db.CrowdFoundOrder", 0L, new BigDecimal("500.00"), "0000");
-        o.setId(8L);
+        o.setId(1L);
         crowdFoundOrderMapper.update(o);
 
 
@@ -55,7 +60,12 @@ public class CrowdFoundOrderMapperTest {
             }
         }
 
+    }
 
-
+    @Test
+    public void testGetMoneyAndCountOfUser() throws Exception {
+        Map map = crowdFoundOrderMapper.getMoneyAndCountOfUser(1000L);
+        System.out.println(map.get("receiveMoney"));
+        System.out.println(crowdFoundOrderMapper.getMoneyAndCountOfUser(1000L));
     }
 }

@@ -14,7 +14,6 @@ import com.mengyou.model.parametercode.TransactionCode;
 import com.mengyou.zhumengyou.dao.CrowdFoundProductMapper;
 import com.mengyou.zhumengyou.model.db.CrowdFoundProduct;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.io.*;

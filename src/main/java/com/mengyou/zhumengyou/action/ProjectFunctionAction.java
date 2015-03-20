@@ -227,6 +227,25 @@ public class ProjectFunctionAction extends ActionParent {
         }
     }
 
+    /**
+     *获取梦游项目列表
+     *
+     * @return
+     */
+    @RequestMapping(value = "/selproducts", method = RequestMethod.GET)
+    @ResponseBody
+    public String functionProductSelect() {
 
+        try {
+            List<CrowdFoundProduct> crowdFoundProducts = projectFunctionService.functionProductSelect();
+            if (crowdFoundProducts == null) {
+                return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPSUCCESS.getCode(), ParameterActionCode.SELECTERROR.getCode(), null, null));//返回结构化信息体
+            }
+            return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPSUCCESS.getCode(), ParameterActionCode.SELECTSUCCESS.getCode(), null, crowdFoundProducts));//返回结构化信息体
+        } catch (Exception e) {
+            e.printStackTrace();
+            return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPERROR.getCode(), null, e.getMessage(), null));//服务异常返回
+        }
+    }
 
 }

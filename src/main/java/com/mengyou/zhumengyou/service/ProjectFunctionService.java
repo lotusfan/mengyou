@@ -1,18 +1,20 @@
 package com.mengyou.zhumengyou.service;
 
-import com.mengyou.zhumengyou.dao.ProductCommentMapper;
-import com.mengyou.zhumengyou.dao.ProductDiaryMapper;
 import com.mengyou.dao.SuggestionMapper;
-import com.mengyou.zhumengyou.dao.SupportOptionMapper;
-import com.mengyou.zhumengyou.model.db.ProductComment;
-import com.mengyou.zhumengyou.model.db.ProductDiary;
 import com.mengyou.model.db.Suggestion;
-import com.mengyou.zhumengyou.model.db.SupportOption;
 import com.mengyou.model.parametercode.ParameterActionCode;
+import com.mengyou.zhumengyou.dao.*;
+import com.mengyou.zhumengyou.model.CrowdFoundProductCode;
+import com.mengyou.zhumengyou.model.db.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by zhangfan on 2015/3/11.
@@ -37,6 +39,12 @@ public class ProjectFunctionService {
 
     @Autowired
     private SuggestionMapper suggestionMapper;
+
+    @Autowired
+    private CrowdFoundProductMapper crowdFoundProductMapper;
+
+    @Autowired
+    private CrowdFoundOrderMapper crowdFoundOrderMapper;
 
 
     /**
@@ -199,5 +207,64 @@ public class ProjectFunctionService {
         }
     }
 
+    /**
+     * 获取梦游项目列表
+     *
+     * @return
+     */
+    public List<CrowdFoundProduct> functionProductSelect() {
+
+
+        //查询上线的项目
+        CrowdFoundProduct crowdFoundProduct = new CrowdFoundProduct();
+        crowdFoundProduct.setStatus(CrowdFoundProductCode.PRODUCTLINE.getCode());
+        List<CrowdFoundProduct> crowdFoundProducts = crowdFoundProductMapper.getBy(crowdFoundProduct);
+
+        //支持人数，已筹集金额，时间的计算
+        for (CrowdFoundProduct foundProduct : crowdFoundProducts) {
+
+            //查询项目的支持订单 人数    总金额
+            Map map = crowdFoundOrderMapper.getMoneyAndCountOfUser(foundProduct.getId());
+            if (map != null) {
+                foundProduct.setMoneyReceive((BigDecimal)map.get("receiveMoney"));
+                foundProduct.setSupportSum(Integer.parseInt(map.get("supportNum")+""));
+            }
+
+            Long timeEndLong = foundProduct.getTimeEnd().getTime();
+            Long currentLong = System.currentTimeMillis();
+
+            if (timeEndLong > currentLong) { //项目众筹时间未到期
+
+                Long hours = (timeEndLong - currentLong) / 1000 / 60 / 60;
+                if (hours < 24) {//不够天显示 时，超一天只显示天
+                    foundProduct.setRemainingTime(hours + "时");
+                } else {
+                    foundProduct.setRemainingTime(hours / 24 + "天");
+                }
+
+            } else { //项目众筹时间已到期 更改项目状态
+                foundProduct.setRemainingTime("0天");
+
+               final CrowdFoundProduct product = new CrowdFoundProduct();
+                product.setId(foundProduct.getId());
+                if (foundProduct.getMoneyTotal().compareTo(foundProduct.getMoneyReceive()) > 0) {
+                    product.setFoundStatus(CrowdFoundProductCode.FOUNDFAIL.getCode()); //筹集金额不够
+                } else {
+                    product.setFoundStatus(CrowdFoundProductCode.FOUNDSUCCESS.getCode()); //筹集金额正好，或多出
+                }
+                //启动线程更新项目状态
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        crowdFoundProductMapper.update(product);
+                    }
+                }).start();
+            }
+
+        }
+
+        return crowdFoundProducts;
+
+    }
 
 }

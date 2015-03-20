@@ -4,23 +4,23 @@
 
     <resultMap id="crowdFoundOrderResultMap" type="com.mengyou.zhumengyou.model.db.CrowdFoundOrder">
         <id column="id" property="id"/>
-        <result column="order_type" property="orderType" />
-        <result column="order_name" property="orderName" />
-        <result column="user_id" property="userId" />
-        <result column="vc2nickname" property="vc2nickname" />
-        <result column="phone" property="phone" />
-        <result column="support_id" property="supportId" />
-        <result column="support_money" property="supportMoney" />
-        <result column="pay_time" property="payTime" />
-        <result column="product_id" property="productId" />
-        <result column="two_dimension_code" property="twoDimensionCode" />
-        <result column="status_validate" property="statusValidate" />
-        <result column="validate_time" property="validateTime" />
-        <result column="status" property="status" />
-        <result column="create_time" property="createTime" />
-        <result column="update_time" property="updateTime" />
+        <result column="order_type" property="orderType"/>
+        <result column="order_name" property="orderName"/>
+        <result column="user_id" property="userId"/>
+        <result column="vc2nickname" property="vc2nickname"/>
+        <result column="phone" property="phone"/>
+        <result column="support_id" property="supportId"/>
+        <result column="support_money" property="supportMoney"/>
+        <result column="pay_type" property="payType"/>
+        <result column="pay_time" property="payTime"/>
+        <result column="product_id" property="productId"/>
+        <result column="status" property="status"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
     </resultMap>
-    <insert id="save" parameterType="com.mengyou.zhumengyou.model.db.CrowdFoundOrder" useGeneratedKeys="true" keyProperty="id">
+
+    <insert id="save" parameterType="com.mengyou.zhumengyou.model.db.CrowdFoundOrder" useGeneratedKeys="true"
+            keyProperty="id">
         insert into `crowd_found_order`(
         <trim suffixOverrides=",">
             <if test="orderType != null">`order_type`,</if>
@@ -30,31 +30,28 @@
             <if test="phone != null">`phone`,</if>
             <if test="supportId != null">`support_id`,</if>
             <if test="supportMoney != null">`support_money`,</if>
+            <if test="payType != null">`pay_type`,</if>
             <if test="payTime != null">`pay_time`,</if>
             <if test="productId != null">`product_id`,</if>
-            <if test="twoDimensionCode != null">`two_dimension_code`,</if>
-            <if test="statusValidate != null">`status_validate`,</if>
-            <if test="validateTime != null">`validate_time`,</if>
             <if test="status != null">`status`,</if>
             <if test="createTime != null">`create_time`,</if>
-            <if test="updateTime != null">`update_time`,</if></trim>
+            <if test="updateTime != null">`update_time`,</if>
+        </trim>
         )values(
         <trim suffixOverrides=",">
-            <if test="orderType != null"> #{orderType},</if>
-            <if test="orderName != null"> #{orderName},</if>
-            <if test="userId != null"> #{userId},</if>
-            <if test="vc2nickname != null"> #{vc2nickname},</if>
-            <if test="phone != null"> #{phone},</if>
-            <if test="supportId != null"> #{supportId},</if>
-            <if test="supportMoney != null"> #{supportMoney},</if>
-            <if test="payTime != null"> #{payTime},</if>
-            <if test="productId != null"> #{productId},</if>
-            <if test="twoDimensionCode != null"> #{twoDimensionCode},</if>
-            <if test="statusValidate != null"> #{statusValidate},</if>
-            <if test="validateTime != null"> #{validateTime},</if>
-            <if test="status != null"> #{status},</if>
-            <if test="createTime != null"> #{createTime},</if>
-            <if test="updateTime != null"> #{updateTime},</if>
+            <if test="orderType != null">#{orderType},</if>
+            <if test="orderName != null">#{orderName},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="vc2nickname != null">#{vc2nickname},</if>
+            <if test="phone != null">#{phone},</if>
+            <if test="supportId != null">#{supportId},</if>
+            <if test="supportMoney != null">#{supportMoney},</if>
+            <if test="payType != null">#{payType},</if>
+            <if test="payTime != null">#{payTime},</if>
+            <if test="productId != null">#{productId},</if>
+            <if test="status != null">#{status},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
         </trim>
         )
     </insert>
@@ -68,36 +65,45 @@
             <if test="phone != null">`phone` = #{phone},</if>
             <if test="supportId != null">`support_id` = #{supportId},</if>
             <if test="supportMoney != null">`support_money` = #{supportMoney},</if>
+            <if test="payType != null">`pay_type` = #{payType},</if>
             <if test="payTime != null">`pay_time` = #{payTime},</if>
             <if test="productId != null">`product_id` = #{productId},</if>
-            <if test="twoDimensionCode != null">`two_dimension_code` = #{twoDimensionCode},</if>
-            <if test="statusValidate != null">`status_validate` = #{statusValidate},</if>
-            <if test="validateTime != null">`validate_time` = #{validateTime},</if>
             <if test="status != null">`status` = #{status},</if>
             <if test="createTime != null">`create_time` = #{createTime},</if>
             <if test="updateTime != null">`update_time` = #{updateTime},</if>
         </trim>
         where `id` = #{id}
     </update>
-    <select id="getBy" parameterType="com.mengyou.zhumengyou.model.db.CrowdFoundOrder" resultMap="crowdFoundOrderResultMap">
+    <select id="getBy" parameterType="com.mengyou.zhumengyou.model.db.CrowdFoundOrder"
+            resultMap="crowdFoundOrderResultMap">
         select * from `crowd_found_order`
         <trim prefix="where" prefixOverrides="AND|OR">
-            <if test="id != null">AND `id` = #{id} </if>
-            <if test="orderType != null">AND `order_type` = #{orderType} </if>
-            <if test="orderName != null">AND `order_name` = #{orderName} </if>
-            <if test="userId != null">AND `user_id` = #{userId} </if>
-            <if test="vc2nickname != null">AND `vc2nickname` = #{vc2nickname} </if>
-            <if test="phone != null">AND `phone` = #{phone} </if>
-            <if test="supportId != null">AND `support_id` = #{supportId} </if>
-            <if test="supportMoney != null">AND `support_money` = #{supportMoney} </if>
-            <if test="payTime != null">AND `pay_time` = #{payTime} </if>
-            <if test="productId != null">AND `product_id` = #{productId} </if>
-            <if test="twoDimensionCode != null">AND `two_dimension_code` = #{twoDimensionCode} </if>
-            <if test="statusValidate != null">AND `status_validate` = #{statusValidate} </if>
-            <if test="validateTime != null">AND `validate_time` = #{validateTime} </if>
-            <if test="status != null">AND `status` = #{status} </if>
-            <if test="createTime != null">AND `create_time` = #{createTime} </if>
-            <if test="updateTime != null">AND `update_time` = #{updateTime} </if>
+            <if test="id != null">AND `id` = #{id}</if>
+            <if test="orderType != null">AND `order_type` = #{orderType}</if>
+            <if test="orderName != null">AND `order_name` = #{orderName}</if>
+            <if test="userId != null">AND `user_id` = #{userId}</if>
+            <if test="vc2nickname != null">AND `vc2nickname` = #{vc2nickname}</if>
+            <if test="phone != null">AND `phone` = #{phone}</if>
+            <if test="supportId != null">AND `support_id` = #{supportId}</if>
+            <if test="supportMoney != null">AND `support_money` = #{supportMoney}</if>
+            <if test="payType != null">AND `pay_type` = #{payType}</if>
+            <if test="payTime != null">AND `pay_time` = #{payTime}</if>
+            <if test="productId != null">AND `product_id` = #{productId}</if>
+            <if test="status != null">AND `status` = #{status}</if>
+            <if test="createTime != null">AND `create_time` = #{createTime}</if>
+            <if test="updateTime != null">AND `update_time` = #{updateTime}</if>
         </trim>
     </select>
+
+    <select id="getMoneyAndCountOfUser" parameterType="java.lang.Long"
+            resultType="java.util.Map">
+        select count(*) as supportNum, IFNULL(sum(userMoney),0) as receiveMoney
+        from (
+            select sum(support_money) as userMoney
+            from `crowd_found_order`
+            WHERE  `product_id` = ${productId}
+            GROUP BY user_id
+            ) as aa
+    </select>
+
 </mapper>

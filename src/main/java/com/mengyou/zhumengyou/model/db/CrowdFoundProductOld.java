@@ -8,31 +8,32 @@ import java.sql.Timestamp;
  * <p/>
  * 众筹项目表
  */
-public class CrowdFoundProduct {
+public class CrowdFoundProductOld {
     private Long id;
     private Long userId;   //创建人
     private String vc2nickname; //创建人昵称
+    private String tourName;  //旅游名称
+    private String lable; //标签
     private Timestamp timeStart; //项目发布时间
     private Timestamp timeEnd; //项目下线时间
     private Integer period; //筹集期间
-    private BigDecimal moneyTotal; //筹集需要的总金额
+    private BigDecimal moneyTotal; //筹集总金额
     private BigDecimal moneyReceive; //筹集到的金额
+    private Integer numTotal; //筹集人数
+    private Integer numReceive; //筹集到的人数
     private Long operatorId; //操作员Id
     private Timestamp operateTime; //操作时间
-    private Integer foundStatus; //筹款状态
     private Integer status; //状态
     private String describe; //项目描述
     private String location1; //位置1
     private String location2; //位置2
-    private Integer productType; //项目类型
-    private String productName; //项目名称
+    private String title; //标题
     private String iconPath; //logo图片路径
     private Timestamp createTime; //记录创建时间
     private Timestamp updateTime; //记录修改时间
-    private Integer orderNum; //排序号
 
     //前端数据显示
-    private Integer supportSum = 0; //支持人数
+    private Integer supportSum; //支持人数
     private String remainingTime; //剩余时间
 
     public Long getId() {
@@ -51,12 +52,28 @@ public class CrowdFoundProduct {
         this.userId = userId;
     }
 
+    public String getTourName() {
+        return tourName;
+    }
+
+    public void setTourName(String tourName) {
+        this.tourName = tourName;
+    }
+
     public String getVc2nickname() {
         return vc2nickname;
     }
 
     public void setVc2nickname(String vc2nickname) {
         this.vc2nickname = vc2nickname;
+    }
+
+    public String getLable() {
+        return lable;
+    }
+
+    public void setLable(String lable) {
+        this.lable = lable;
     }
 
     public Timestamp getTimeStart() {
@@ -99,6 +116,22 @@ public class CrowdFoundProduct {
         this.moneyReceive = moneyReceive;
     }
 
+    public Integer getNumTotal() {
+        return numTotal;
+    }
+
+    public void setNumTotal(Integer numTotal) {
+        this.numTotal = numTotal;
+    }
+
+    public Integer getNumReceive() {
+        return numReceive;
+    }
+
+    public void setNumReceive(Integer numReceive) {
+        this.numReceive = numReceive;
+    }
+
     public Long getOperatorId() {
         return operatorId;
     }
@@ -131,38 +164,6 @@ public class CrowdFoundProduct {
         this.describe = describe;
     }
 
-    public String getLocation1() {
-        return location1;
-    }
-
-    public void setLocation1(String location1) {
-        this.location1 = location1;
-    }
-
-    public String getLocation2() {
-        return location2;
-    }
-
-    public void setLocation2(String location2) {
-        this.location2 = location2;
-    }
-
-    public Integer getProductType() {
-        return productType;
-    }
-
-    public void setProductType(Integer productType) {
-        this.productType = productType;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
     public String getIconPath() {
         return iconPath;
     }
@@ -187,12 +188,28 @@ public class CrowdFoundProduct {
         this.updateTime = updateTime;
     }
 
-    public Integer getOrderNum() {
-        return orderNum;
+    public String getLocation1() {
+        return location1;
     }
 
-    public void setOrderNum(Integer orderNum) {
-        this.orderNum = orderNum;
+    public void setLocation1(String location1) {
+        this.location1 = location1;
+    }
+
+    public String getLocation2() {
+        return location2;
+    }
+
+    public void setLocation2(String location2) {
+        this.location2 = location2;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public Integer getSupportSum() {
@@ -211,38 +228,31 @@ public class CrowdFoundProduct {
         this.remainingTime = remainingTime;
     }
 
-    public Integer getFoundStatus() {
-        return foundStatus;
-    }
-
-    public void setFoundStatus(Integer foundStatus) {
-        this.foundStatus = foundStatus;
-    }
-
     @Override
     public String toString() {
         return "CrowdFoundProduct{" +
                 "id=" + id +
                 ", userId=" + userId +
                 ", vc2nickname='" + vc2nickname + '\'' +
+                ", tourName='" + tourName + '\'' +
+                ", lable='" + lable + '\'' +
                 ", timeStart=" + timeStart +
                 ", timeEnd=" + timeEnd +
                 ", period=" + period +
                 ", moneyTotal=" + moneyTotal +
                 ", moneyReceive=" + moneyReceive +
+                ", numTotal=" + numTotal +
+                ", numReceive=" + numReceive +
                 ", operatorId=" + operatorId +
                 ", operateTime=" + operateTime +
-                ", foundStatus=" + foundStatus +
                 ", status=" + status +
                 ", describe='" + describe + '\'' +
                 ", location1='" + location1 + '\'' +
                 ", location2='" + location2 + '\'' +
-                ", productType=" + productType +
-                ", productName='" + productName + '\'' +
+                ", title='" + title + '\'' +
                 ", iconPath='" + iconPath + '\'' +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
-                ", orderNum=" + orderNum +
                 ", supportSum=" + supportSum +
                 ", remainingTime='" + remainingTime + '\'' +
                 '}';
