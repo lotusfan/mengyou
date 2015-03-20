@@ -226,8 +226,8 @@ public class ProjectFunctionService {
             //查询项目的支持订单 人数    总金额
             Map map = crowdFoundOrderMapper.getMoneyAndCountOfUser(foundProduct.getId());
             if (map != null) {
-                foundProduct.setMoneyReceive((BigDecimal)map.get("receiveMoney"));
-                foundProduct.setSupportSum(Integer.parseInt(map.get("supportNum")+""));
+                foundProduct.setMoneyReceive((BigDecimal) map.get("receiveMoney"));
+                foundProduct.setSupportSum(Integer.parseInt(map.get("supportNum") + ""));
             }
 
             Long timeEndLong = foundProduct.getTimeEnd().getTime();
@@ -245,13 +245,14 @@ public class ProjectFunctionService {
             } else { //项目众筹时间已到期 更改项目状态
                 foundProduct.setRemainingTime("0天");
 
-               final CrowdFoundProduct product = new CrowdFoundProduct();
+                final CrowdFoundProduct product = new CrowdFoundProduct();
                 product.setId(foundProduct.getId());
                 if (foundProduct.getMoneyTotal().compareTo(foundProduct.getMoneyReceive()) > 0) {
                     product.setFoundStatus(CrowdFoundProductCode.FOUNDFAIL.getCode()); //筹集金额不够
                 } else {
                     product.setFoundStatus(CrowdFoundProductCode.FOUNDSUCCESS.getCode()); //筹集金额正好，或多出
                 }
+                foundProduct.setFoundStatus(product.getFoundStatus());//返回前端的项目状态
                 //启动线程更新项目状态
                 new Thread(new Runnable() {
                     @Override
@@ -260,7 +261,6 @@ public class ProjectFunctionService {
                     }
                 }).start();
             }
-
         }
 
         return crowdFoundProducts;
