@@ -128,7 +128,7 @@
     </select>
 
     <select id="getById" parameterType="java.lang.Long"
-            resultType="com.mengyou.zhumengyou.model.db.CrowdFoundProductOld">
+            resultType="com.mengyou.zhumengyou.model.db.CrowdFoundProduct">
         select * from `crowd_found_product` where `id` = #{id}
 
     </select>

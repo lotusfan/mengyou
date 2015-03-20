@@ -14,6 +14,7 @@ import com.mengyou.model.parametercode.TransactionCode;
 import com.mengyou.zhumengyou.dao.CrowdFoundProductMapper;
 import com.mengyou.zhumengyou.model.db.CrowdFoundProduct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
@@ -38,8 +39,9 @@ public class SoftwareControllerService {
     private PicMapper picMapper;
     @Autowired
     private TransactionMapper transactionMapper;
+    @Qualifier("transactionService")
     @Autowired
-    private CrowdFoundProductMapper crowdFoundProductMapper;
+    private TransactionService transactionService;
 
 
     /**
@@ -179,39 +181,14 @@ public class SoftwareControllerService {
         }
 
         individualPageModel.setTransactionRecordsSum(transactions.size()); //交易记录条数
-        individualPageModel.setTransactions(transactions); //交易记录详情
+//        individualPageModel.setTransactions(transactions); //交易记录详情
 
-        //交易记录统计 只有当年的已过月份
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月");
-        List<StatisticsTransactionModel> statisticsTransactionModels = new ArrayList<>(calendar.get(Calendar.MONTH) + 1);
 
-        int month = calendar.get(Calendar.MONTH);
-        for (int i = 0; i <= month; i++) {//对返回交易统计List初始化
+        List<CrowdFoundProduct> crowdFoundProducts = transactionService.getPartakeProducts(transactions);
 
-            calendar.set(Calendar.MONTH, i);
-            StatisticsTransactionModel statisticsTransactionModel = new StatisticsTransactionModel();
-            statisticsTransactionModel.setTime(simpleDateFormat.format(calendar.getTime()));
-            statisticsTransactionModels.add(i, statisticsTransactionModel);
-        }
-        //减少一次遍历transactions，将记录插入移下
-
-        //我参与的梦游项目
-        List<CrowdFoundProduct> crowdFoundProducts = new ArrayList<>();
-        for (Transaction tr : transactions) {
-            //筛选参与梦游项目
-            if (TransactionCode.SUPPORTOPTION.getCode() == tr.getType()) {
-                crowdFoundProducts.add(crowdFoundProductMapper.getById(tr.getSourceId()));
-            }
-            //交易记录统计
-            calendar.setTimeInMillis(tr.getTime().getTime());
-            StatisticsTransactionModel stm = statisticsTransactionModels.get(calendar.get(Calendar.MONTH));
-            stm.setTotal(stm.getTotal().add(tr.getMoney()));
-        }
-
-        individualPageModel.setStatisticsTransactionModels(statisticsTransactionModels); //交易统计
         individualPageModel.setPartakeDreamSum(crowdFoundProducts.size()); //参与梦游条数
         individualPageModel.setPartakeProducts(crowdFoundProducts); //参与梦游项目详情
+        individualPageModel.setStatisticsTransactionModels(transactionService.getStatisticsTransactionModels(transactions)); //交易统计
 
         return individualPageModel;
 
