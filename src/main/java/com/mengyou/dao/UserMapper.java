@@ -16,4 +16,6 @@ public interface UserMapper {
     public List<User> getBy(User user);
 
     public void updatePassword(User user);
+
+    public User getSummary(User user);
 }

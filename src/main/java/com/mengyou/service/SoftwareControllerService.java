@@ -92,6 +92,8 @@ public class SoftwareControllerService {
     }
 
     /**
+     * 用户头像替换曾使用过的
+     *
      * @param pic
      * @return
      */

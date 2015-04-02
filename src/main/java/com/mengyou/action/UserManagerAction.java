@@ -6,6 +6,7 @@ import com.mengyou.model.db.User;
 import com.mengyou.model.parametercode.HTTPCODE;
 import com.mengyou.model.parametercode.ParameterActionCode;
 import com.mengyou.service.UserManagerService;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -55,6 +56,36 @@ public class UserManagerAction extends ActionParent {
         }
     }
 
+
+    /**
+     * 用户个人信息摘要
+     *
+     * @param requestModel
+     * @return
+     */
+    @RequestMapping(value = "/summary", method = RequestMethod.POST)
+    @ResponseBody
+    public String userSummary(@RequestBody RequestModel requestModel) {
+
+        try {
+
+            User user = (User) transformJSONObjectToModel(requestModel, User.class); //将requestModel里的o强转为user对象
+            if (user.getId() == null) {
+                return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPSUCCESS.getCode(), ParameterActionCode.NOID.getCode(), null, null));//没有ID
+            }
+            user = userManagerService.userSummary(user);
+
+            if (user == null) {
+                return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPSUCCESS.getCode(), ParameterActionCode.SELECTUSERERROR.getCode(), null, null));//没有此用户
+            }
+            return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPSUCCESS.getCode(), ParameterActionCode.SELECTSUCCESS.getCode(), null, user));//成功
+
+        } catch (Exception e) {
+            return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPERROR.getCode(), null, e.getMessage(), null));//服务异常返回
+        }
+
+    }
+
     /**
      * 用户信息修改
      *
@@ -69,7 +100,11 @@ public class UserManagerAction extends ActionParent {
             if (user.getId() == null) {//没有用户Id
                 return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPSUCCESS.getCode(), ParameterActionCode.NOID.getCode(), null, null));//返回结构化信息体
             }
-            return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPSUCCESS.getCode(), userManagerService.userAlert(user), null, null));//返回结构化信息体
+            user = userManagerService.userAlert(user);
+            if (user == null) {
+                return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPSUCCESS.getCode(), ParameterActionCode.UPDATEERROR.getCode(), null, null));//更新失败
+            }
+            return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPSUCCESS.getCode(), ParameterActionCode.UPDATESUCCESS.getCode(), null, user));//成功
         } catch (Exception e) {
             return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPERROR.getCode(), null, e.getMessage(), null));//服务异常返回
         }
@@ -88,11 +123,18 @@ public class UserManagerAction extends ActionParent {
     public String smsRegiste(@RequestBody RequestModel requestModel, HttpServletRequest httpServletRequest) {
 
         try {
+
             User user = (User) transformJSONObjectToModel(requestModel, User.class);
 
             if (user.getVc2loginaccount() == null) {
                 return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPSUCCESS.getCode(), ParameterActionCode.DATANOTCOMPLETE.getCode(), null, null));//返回Session过期
             }
+            //验证用户是否已存在
+            if (userManagerService.userGetByAccount(user)) {
+                return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPSUCCESS.getCode(), ParameterActionCode.DATANOTCOMPLETE.getCode(), null, null));//返回Session过期
+            }
+
+
             return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPSUCCESS.getCode(), userManagerService.smsRegiste(user, httpServletRequest.getSession()), null, null));//返回Session过期
 
         } catch (Exception e) {
@@ -167,18 +209,20 @@ public class UserManagerAction extends ActionParent {
     @ResponseBody
     public String userRetrieve(@RequestBody RequestModel requestModel, HttpServletRequest httpServletRequest) {
         try {
-            if (!httpServletRequest.isRequestedSessionIdValid()) {
+           /* if (!httpServletRequest.isRequestedSessionIdValid()) {
                 return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPSUCCESS.getCode(), ParameterActionCode.SESSIONINVALID.getCode(), null, null));//返回Session过期
-            }
+            }*/
             User user = (User) transformJSONObjectToModel(requestModel, User.class);
-            if (user.getAuthentiCode() == null || user.getVc2loginaccount() == null) {
+            if (user.getVc2loginpassword() == null || user.getVc2loginaccount() == null) {
                 return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPSUCCESS.getCode(), ParameterActionCode.DATANOTCOMPLETE.getCode(), null, null));//返回数据上传不完整
             }
+/*
 
             HttpSession httpSession = httpServletRequest.getSession();
             if (!user.getAuthentiCode().equals((String) httpSession.getAttribute("authentiCode")) || !user.getVc2loginaccount().equals((String) httpSession.getAttribute("vc2loginaccount"))) {
                 return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPSUCCESS.getCode(), ParameterActionCode.SESSIONINVALID.getCode(), null, null));//返回Session过期
             }
+*/
 
             return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPSUCCESS.getCode(), userManagerService.userRetrieve(user), null, null));//返回Session过期
 

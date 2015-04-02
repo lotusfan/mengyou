@@ -11,6 +11,10 @@ public class RequestModel {
 
     private String userName;
 
+    private String tokenId;
+
+    private String clientType;
+
     private Object o;
 
     public String getVersion() {
@@ -37,11 +41,29 @@ public class RequestModel {
         this.userName = userName;
     }
 
+    public String getTokenId() {
+        return tokenId;
+    }
+
+    public void setTokenId(String tokenId) {
+        this.tokenId = tokenId;
+    }
+
+    public String getClientType() {
+        return clientType;
+    }
+
+    public void setClientType(String clientType) {
+        this.clientType = clientType;
+    }
+
     @Override
     public String toString() {
         return "RequestModel{" +
                 "version='" + version + '\'' +
                 ", userName='" + userName + '\'' +
+                ", tokenId='" + tokenId + '\'' +
+                ", clientType='" + clientType + '\'' +
                 ", o=" + o +
                 '}';
     }

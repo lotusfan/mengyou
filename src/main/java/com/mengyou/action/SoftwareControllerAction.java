@@ -59,13 +59,12 @@ public class SoftwareControllerAction extends ActionParent {
     /**
      * 上传用户头像
      *
-     * @param multipartFile
      * @param httpServletRequest
      * @return
      */
     @RequestMapping(value = "/uploadpic", method = RequestMethod.POST)
     @ResponseBody
-    public String uploadPic(@RequestParam MultipartFile multipartFile, HttpServletRequest httpServletRequest) {
+    public String uploadPic(HttpServletRequest httpServletRequest) {
         Pic pic = new Pic();
 //        pic.setTypeId(Long.parseLong((String)httpServletRequest.getSession().getAttribute("userId")));
 
@@ -73,7 +72,8 @@ public class SoftwareControllerAction extends ActionParent {
         String code;
 
         try {
-            code = softwareControllerService.uploadHeadPic(multipartFile.getInputStream(), pic);
+//            code = softwareControllerService.uploadHeadPic(multipartFile.getInputStream(), pic);
+            code = softwareControllerService.uploadHeadPic(httpServletRequest.getInputStream(), pic);
         } catch (IOException e) {
             System.out.println(e.getMessage());
             return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPERROR.getCode(), null, e.getMessage(), null));

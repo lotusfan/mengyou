@@ -126,15 +126,47 @@
     <update id="updatePassword" parameterType="com.mengyou.model.db.User">
         update `user`
         <trim prefix="set" suffixOverrides=",">
-            <if test="vc2loginpassword != null">`vc2loginpassword` = #{vc2loginpassword},</if>
+            <if test="vc2loginpassword != null">`vc2loginpassword` = ${vc2loginpassword},</if>
         </trim>
         <trim prefix="where" prefixOverrides="AND|OR">
-        <if test="vc2loginaccount != null">AND　`vc2loginaccount` = #{vc2loginaccount},</if>
+        <if test="vc2loginaccount != null"> vc2loginaccount = '${vc2loginaccount}'</if>
         </trim>
     </update>
 
     <select id="getBy" parameterType="com.mengyou.model.db.User" resultMap="userResultMap">
         select * from `user`
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="id != null">AND `id` = #{id} </if>
+            <if test="vc2nickname != null">AND `vc2nickname` = #{vc2nickname} </if>
+            <if test="vc2username != null">AND `vc2username` = #{vc2username} </if>
+            <if test="vc2sex != null">AND `vc2sex` = #{vc2sex} </if>
+            <if test="datbirth != null">AND `datbirth` = #{datbirth} </if>
+            <if test="vc2bloodtype != null">AND `vc2bloodtype` = #{vc2bloodtype} </if>
+            <if test="vc2occupation != null">AND `vc2occupation` = #{vc2occupation} </if>
+            <if test="vc2company != null">AND `vc2company` = #{vc2company} </if>
+            <if test="vc2school != null">AND `vc2school` = #{vc2school} </if>
+            <if test="vc2invitationcode != null">AND `vc2invitationcode` = #{vc2invitationcode} </if>
+            <if test="numdreammoney != null">AND `numdreammoney` = #{numdreammoney} </if>
+            <if test="vc2idcard != null">AND `vc2idcard` = #{vc2idcard} </if>
+            <if test="vc2loginaccount != null">AND `vc2loginaccount` = #{vc2loginaccount} </if>
+            <if test="vc2loginpassword != null">AND `vc2loginpassword` = #{vc2loginpassword} </if>
+            <if test="datregister != null">AND `datregister` = #{datregister} </if>
+            <if test="vc2mylabel != null">AND `vc2mylabel` = #{vc2mylabel} </if>
+            <if test="vc2bankaccount != null">AND `vc2bankaccount` = #{vc2bankaccount} </if>
+            <if test="vc2iconpath != null">AND `vc2iconpath` = #{vc2iconpath} </if>
+            <if test="vc2xingzuo != null">AND `vc2xingzuo` = #{vc2xingzuo} </if>
+            <if test="vc2area != null">AND `vc2area` = #{vc2area} </if>
+            <if test="code != null">AND `code` = #{code} </if>
+            <if test="numeverymoney != null">AND `numeverymoney` = #{numeverymoney} </if>
+            <if test="vc2age != null">AND `vc2age` = #{vc2age} </if>
+            <if test="location1 != null">AND `location1` = #{location1} </if>
+            <if test="location2 != null">AND `location2` = #{location2} </if>
+            <if test="createTime != null">AND `create_time` = #{createTime} </if>
+            <if test="updateTime != null">AND `update_time` = #{updateTime} </if>
+        </trim>
+    </select>
+    <select id="getSummary"  parameterType="com.mengyou.model.db.User"  resultType="com.mengyou.model.db.User">
+        select vc2nickname,vc2username,vc2age,location1 from `user`
         <trim prefix="where" prefixOverrides="AND|OR">
             <if test="id != null">AND `id` = #{id} </if>
             <if test="vc2nickname != null">AND `vc2nickname` = #{vc2nickname} </if>

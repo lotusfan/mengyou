@@ -19,6 +19,7 @@ public enum ParameterActionCode {
     VERSIONNOTNEEDUPDATE("0009"),//版本不需要更新
     SESSIONINVALID("0010"),//Session过期超时
     DATANOTCOMPLETE("0011"),//上传数据不完整
+    USEREXIST("0012"), //用户已存在
 
 
     /*服务器层*/
@@ -29,8 +30,8 @@ public enum ParameterActionCode {
     UPDATESUCCESS("0055"),//更新成功
     SELECTERROR("0056"),//查询错误
     SELECTSUCCESS("0057"),//查询成功
-    INSERTERROR("0059"),//数据添加正确
-    INSERTSUCCESS("0058"),//数据添加错误
+    INSERTERROR("0059"),//数据添加错误
+    INSERTSUCCESS("0058"),//数据添加正确
     UPLOADPICSUCCESS("0059"),//图片存储成功
     UPLOADPICERROR("0060"),//图片存储出错
     AUTHENTICODEERROR("0061"),//验证码发送失败

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -199,9 +200,11 @@ public class ProjectFunctionService {
      */
     public String saveSuggestion(Suggestion suggestion) {
         try {
+            suggestion.setSugTime(new Timestamp(System.currentTimeMillis()));
             suggestionMapper.save(suggestion);
             return ParameterActionCode.INSERTSUCCESS.getCode();
         } catch (Exception e) {
+            e.printStackTrace();
             System.out.println(e.getMessage());
             return ParameterActionCode.INSERTERROR.getCode();
         }
@@ -265,6 +268,25 @@ public class ProjectFunctionService {
 
         return crowdFoundProducts;
 
+    }
+
+    /**
+     * 获取梦游项目详情
+     *
+     * @param crowdFoundProduct
+     * @return
+     */
+    public CrowdFoundProduct functionProductSelectById(CrowdFoundProduct crowdFoundProduct) {
+
+        CrowdFoundProduct o = new CrowdFoundProduct();
+        o.setId(crowdFoundProduct.getId());
+
+        List<CrowdFoundProduct> list = crowdFoundProductMapper.getBy(o);
+
+        if (list == null || list.size() != 1) {
+            return null;
+        }
+        return list.get(0);
     }
 
 }
