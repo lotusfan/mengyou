@@ -57,7 +57,7 @@ public class FastJsonHttpMessageConverter extends AbstractHttpMessageConverter<O
     public void setFeatures(SerializerFeature... features) {
         this.features = features;
     }
-
+0
     @Override
     protected Object readInternal(Class<?> clazz, HttpInputMessage inputMessage) throws IOException,
                                                                                                HttpMessageNotReadableException {

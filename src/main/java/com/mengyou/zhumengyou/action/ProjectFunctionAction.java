@@ -248,4 +248,34 @@ public class ProjectFunctionAction extends ActionParent {
         }
     }
 
+    /**
+     * 获取梦游项目详情
+     *
+     * @param requestModel
+     * @return
+     */
+
+    @RequestMapping(value = "/selproductsbyid", method = RequestMethod.POST)
+    @ResponseBody
+    public String functionProductSelectById(@RequestBody RequestModel requestModel) {
+
+        try {
+            CrowdFoundProduct crowdFoundProduct = (CrowdFoundProduct) transformJSONObjectToModel(requestModel, CrowdFoundProduct.class); //将requestModel里的o强转为user对象
+
+            if (crowdFoundProduct.getId() == null) {
+                return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPSUCCESS.getCode(), ParameterActionCode.NOID.getCode(), null, null));//没有Id信息
+            }
+
+            crowdFoundProduct = projectFunctionService.functionProductSelectById(crowdFoundProduct);
+
+            if (crowdFoundProduct == null) {
+                return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPSUCCESS.getCode(), ParameterActionCode.SELECTERROR.getCode(), null, null));//没有查询到数据
+            }
+
+            return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPSUCCESS.getCode(), null, null, crowdFoundProduct));//返回结构化信息体
+        } catch (Exception e) {
+            return JSON.toJSONString(generateResponseModel(HTTPCODE.HTTPERROR.getCode(), null, e.getMessage(), null));//服务异常返回
+        }
+    }
+
 }

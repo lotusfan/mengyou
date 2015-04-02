@@ -166,8 +166,6 @@
             <version>1.6.3</version>
         </dependency>
 
-
-
     </dependencies>
     <build>
         <finalName>mengyou</finalName>
@@ -218,11 +216,11 @@
                 <configuration>
                     <port>8080</port>
                     <uriEncoding>UTF-8</uriEncoding>
-                    <url>http://localhost:8080/manager/text</url>
+                    <url>http://192.168.0.92:8080/manager/text</url>
                     <server>server-test</server>
                     <username>tomcat</username>
                     <password>tomcat</password>
-                    <path>/zhangfan-root</path>
+                    <path>/dream</path>
                 </configuration>
             </plugin>
 
