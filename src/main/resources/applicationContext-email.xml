@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="mailEngine" class="com.mengyou.util.MailEngine">
+        <property name="mailSenders">
+            <list>
+                <ref bean = "mailSender1"/>
+                <ref bean = "mailSender2"/>
+                <ref bean = "mailSender3"/>
+                <ref bean = "mailSender4"/>
+                <ref bean = "mailSender5"/>
+                <ref bean = "mailSender6"/>
+                <ref bean = "mailSender7"/>
+                <ref bean = "mailSender8"/>
+                <ref bean = "mailSender9"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="${mail.host}" />
+        <property name="username" value="${mail.username}" />
+        <property name="password" value="${mail.password}" />
+        <property name="defaultEncoding" value="${mail.defaultEncoding}" />
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="mailSender1" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="${mail.host1}" />
+        <property name="username" value="${mail.username1}" />
+        <property name="password" value="${mail.password1}" />
+        <property name="defaultEncoding" value="${mail.defaultEncoding}" />
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="mailSender2" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="${mail.host2}" />
+        <property name="username" value="${mail.username2}" />
+        <property name="password" value="${mail.password2}" />
+        <property name="defaultEncoding" value="${mail.defaultEncoding}" />
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="mailSender3" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="${mail.host3}" />
+        <property name="username" value="${mail.username3}" />
+        <property name="password" value="${mail.password3}" />
+        <property name="defaultEncoding" value="${mail.defaultEncoding}" />
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="mailSender4" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="${mail.host4}" />
+        <property name="username" value="${mail.username4}" />
+        <property name="password" value="${mail.password4}" />
+        <property name="defaultEncoding" value="${mail.defaultEncoding}" />
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="mailSender5" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="${mail.host5}" />
+        <property name="username" value="${mail.username5}" />
+        <property name="password" value="${mail.password5}" />
+        <property name="defaultEncoding" value="${mail.defaultEncoding}" />
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="mailSender6" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="${mail.host6}" />
+        <property name="username" value="${mail.username6}" />
+        <property name="password" value="${mail.password6}" />
+        <property name="defaultEncoding" value="${mail.defaultEncoding}" />
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="mailSender7" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="${mail.host7}" />
+        <property name="username" value="${mail.username7}" />
+        <property name="password" value="${mail.password7}" />
+        <property name="defaultEncoding" value="${mail.defaultEncoding}" />
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="mailSender8" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="${mail.host8}" />
+        <property name="username" value="${mail.username8}" />
+        <property name="password" value="${mail.password8}" />
+        <property name="defaultEncoding" value="${mail.defaultEncoding}" />
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="mailSender9" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="${mail.host9}" />
+        <property name="username" value="${mail.username9}" />
+        <property name="password" value="${mail.password9}" />
+        <property name="defaultEncoding" value="${mail.defaultEncoding}" />
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="mailSender10" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="${mail.host10}" />
+        <property name="username" value="${mail.username10}" />
+        <property name="password" value="${mail.password10}" />
+        <property name="defaultEncoding" value="${mail.defaultEncoding}" />
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">true</prop>
+            </props>
+        </property>
+    </bean>
+
+
+</beans>

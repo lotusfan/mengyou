@@ -81,4 +81,19 @@
         select count(*) from `test`
     </select>
 
+    <!--<select id="pagingBy" resultType="com.mengyou.model.db.Test">
+        SELECT * from `test`
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="id != null and id != 0 ">
+                AND `id` = ${id}
+            </if>
+            <if test="name != null and name !=0 ">
+                AND `name` = ${name}
+            </if>
+        </trim>
+        limit 2, ${pageNum}
+
+    </select>-->
+
+
 </mapper>

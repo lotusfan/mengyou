@@ -10,9 +10,10 @@
                 <!--<prop key="index.do">testAction</prop>-->
 
                 <!-- 测试是否进入filter的 -->
-                <prop key="search">testAction</prop>
+                <prop key="/teststring">testAction</prop>
+                <!--<prop key="search">testAction</prop>
                 <prop key="user/alert">userManagerAction</prop>
-                <prop key="function/addcomment">projectFunctionAction</prop>
+                <prop key="function/addcomment">projectFunctionAction</prop>-->
             </props>
         </property>
     </bean>

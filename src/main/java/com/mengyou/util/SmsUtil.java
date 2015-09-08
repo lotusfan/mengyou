@@ -16,6 +16,11 @@ import javax.xml.rpc.ParameterMode;
 public class SmsUtil {
 
 
+    public static void main(String[] args)  throws Exception{
+        sendMessage("18210202686", "验证码：123456，您正在使用全融信贷短信验证码进行校验，请勿告知他人。客服电话：4000-686-000");
+    }
+
+
     /**
      * 发送短信方法
      *

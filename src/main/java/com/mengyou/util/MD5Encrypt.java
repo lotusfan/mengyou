@@ -19,7 +19,7 @@ public class MD5Encrypt {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return toSixteen(pwd.getBytes());
+        return pwd;
     }
     /**
      * 把密文转换成16进制的字符串形式

@@ -23,6 +23,26 @@ public class TestAction extends ActionParent {
     @Autowired
     public TestService testService;
 
+
+    @RequestMapping(value = "/testredis")
+    @ResponseBody
+    public String testRedisSession(HttpServletRequest httpRequest) {
+
+
+        HttpSession httpSession = httpRequest.getSession();
+//        httpRequest.getSession().setAttribute("name", "123456798");
+        httpSession.setAttribute("name","zhangdfdfd");
+        return "<a href='/testgetredis.do'>ddfdf</a>";
+    }
+
+    @RequestMapping(value = "/testgetredis")
+    @ResponseBody
+    public String testGetRedisSession(HttpServletRequest httpServletRequest) {
+
+        return (String) httpServletRequest.getSession().getAttribute("name");
+    }
+
+
     @RequestMapping(value = "/testmodel", method = RequestMethod.POST)
     @ResponseBody
     public String testModelMethod(@RequestBody RequestModel requestModel) {
@@ -73,14 +93,14 @@ public class TestAction extends ActionParent {
     }
 
 
-    @RequestMapping(value = "/search.do", method = RequestMethod.GET)
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
     @ResponseBody
     public String testFilter(HttpServletRequest httpRequest) {
         HttpSession httpSession = httpRequest.getSession();
-        httpSession.setAttribute("username", "zhangff");
+        httpSession.setAttribute("username", "123456798");
 
 
-        httpSession.setMaxInactiveInterval(10);
+//        httpSession.setMaxInactiveInterval(10);
         System.out.println("JSESSIONID " + httpSession.getId());
         System.out.println(httpSession.getCreationTime());
         System.out.println(httpSession.getLastAccessedTime());

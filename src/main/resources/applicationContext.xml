@@ -10,6 +10,7 @@
 
     <import resource="applicationContext-dao.xml" />
     <import resource="applicationContext-filter.xml"/>
+    <import resource="applicationContext-email.xml"/>
 
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 

@@ -47,12 +47,13 @@ public class LoginValidateFilter implements Filter {
                 outputStreamWriter.flush();
             } catch (Exception e) {
                 e.printStackTrace();
-            }finally {
+            } finally {
                 if (outputStreamWriter != null) {
                     outputStreamWriter.close();
                 }
             }
-
+        } else {
+            filterChain.doFilter(servletRequest,servletResponse);
         }
 
     }
@@ -62,7 +63,7 @@ public class LoginValidateFilter implements Filter {
 
     }
 
-    public boolean isRequestLegal(HttpServletRequest httpServletRequest) {
+    /*public boolean isRequestLegal(HttpServletRequest httpServletRequest) {
 
         if (!httpServletRequest.isRequestedSessionIdValid()) {
             return false;
@@ -75,6 +76,16 @@ public class LoginValidateFilter implements Filter {
             return false;
         }
 
+        return true;
+
+    }*/
+    public boolean isRequestLegal(HttpServletRequest httpServletRequest) {
+        String s = (String) httpServletRequest.getSession().getAttribute("username");
+        System.out.println(s+"----------------------------------------------");
+
+        if (s == null || s.length() < 1) {
+            return false;
+        }
         return true;
 
     }

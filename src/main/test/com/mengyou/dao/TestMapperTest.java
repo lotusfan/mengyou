@@ -19,11 +19,18 @@ public class TestMapperTest {
     @Test
     public void testGetBy() throws Exception {
 
+        System.out.println(testMapper.getBy(new com.mengyou.model.db.Test()));
     }
 
     @Test
     public void testSelectCount() throws Exception {
 
         System.out.println(testMapper.selectCount());
+    }
+    @Test
+    public void testPagingBy() throws Exception{
+        com.mengyou.model.db.Test test = new com.mengyou.model.db.Test();
+
+//        System.out.println(testMapper.pagingBy(test, 2));
     }
 }
